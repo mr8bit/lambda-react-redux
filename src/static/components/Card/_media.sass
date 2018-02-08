@@ -1,0 +1,148 @@
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px)
+	/**/
+
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px)
+  .card
+    display: inline-block
+    &--main
+      flex-direction: column
+      height: auto
+    &-head
+      &--main
+        position: relative
+        bottom: 45px
+
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px)
+  .card
+    &--main
+      padding: 0
+    &-footer
+      width: 100%
+    &--big
+      width: 100%
+      background-size: cover
+      margin: 15px auto
+    &-head
+      &__tag
+        &--big
+          margin-top: 10px
+      &--big
+        height: 75px
+    &-body
+      &--big
+        height: 193px
+
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px)
+	.card
+      &-head
+        &--main
+          bottom: 50px
+        &__tag
+          &--big
+            margin-top: 0
+        &--big
+          height: auto
+          padding: 35px 0
+          padding-bottom: 0px
+      &-body
+        &--event
+          &--middle
+            height: auto
+        &--big
+          height: auto
+          padding: 55px 25px
+        &--middle
+          height: auto
+        &--small
+          height: auto
+        &__title
+          line-height: 30px
+          font-weight: 300
+          font-size: 20px
+          word-wrap: break-word
+          white-space: normal
+          &--middle
+            font-size: 18px
+            line-height: 28px
+            word-wrap: break-word
+            white-space: normal
+          &--small
+            font-size: 16px
+            color: #fff
+            line-height: 23px
+          &--number
+            line-height: 50px
+            font-size: 48px
+      &-footer
+        height: auto
+        &--event
+          &--middle
+            padding: 25px 20px
+        &--big
+          padding: 10px 15px
+          align-items: center
+        &__countcomment
+          &--big
+            display: none
+      &--big
+        height: auto
+        margin: 15px 25px
+        width: calc(100% - 50px)
+      &--middle
+        height: auto
+        margin: 15px 25px
+        width: calc(100% - 50px)
+      &--small
+        height: auto
+        margin: 15px 25px
+        width: calc(100% - 50px)
+      &--number
+        margin: 15px 25px
+        width: calc(100% - 50px)
+      &--event
+        &--middle
+          height: auto
+          margin: 15px 25px
+          width: calc(100% - 50px)
+        &--big
+          height: auto
+          margin: 15px 25px
+          width: calc(100% - 50px)
+      &--mini
+        width: calc(100% - 30px)
+        margin: 15px 15px
+        height: auto
+
+      &__img
+        display: block
+        width: 100%
+        height: 100%
+        object-fit: cover
+
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 320px)
+	.card
+      &-body
+        &__title
+          font-size: 18px
+          line-height: 25px
+      &-head
+        &--event
+          &--middle
+            height: 100px
+      &--event
+
+        &--middle
+          width: calc(100% - 50px)
+        &--big
+          width: calc(100% - 50px)
+      &--mini
+        width: 300px

@@ -1,0 +1,146 @@
+
+$degs: 0 45 90 180 270 360
+
+@each $deg in $degs
+  .icon-rotate-#{$deg}:before
+    transform: rotate($deg+deg)
+
+.icon:before
+  display: inline-block
+  font-family: 'lambda'
+  font-style: normal
+  font-weight: normal
+  text-rendering: auto
+  -webkit-font-smoothing: antialiased
+  line-height: 1
+  -moz-osx-font-smoothing: grayscale
+
+.icon
+  // Social
+  &-vk:before
+    content: '\0041'
+  &-twitter:before
+    content: '\0042'
+  &-github:before
+    content: '\0056'
+  &-instagram:before
+    content: '\0048'
+  &-youtuve:before
+    content: '\004d'
+  // List
+  &-list-style:before
+    content: '\0061'
+  &-grid:before
+    content: '\0063'
+  &-edit:before
+    content: '\0062'
+  &-heart-outline:before
+    content: '\0064'
+  &-credit-card:before
+    content: '\0065'
+  &-done:before
+    content: '\0066'
+
+  &-delivery:before
+    content: '\0067'
+
+  &-star:before
+    content: '\0068'
+  &-star-solid:before
+    content: '\006f'
+  &-today:before
+    content: '\0069'
+  &-navigate
+    content: '\006a'
+  &-delete:before
+    content: '\006c'
+  &-like:before
+    content: '\006d'
+  &-open-in-new:before
+    content: '\006e'
+  // Control
+  &-one-comment:before
+    content: '\006b'
+
+  &-cart:before
+    content: '\005a'
+
+  &-comment:before
+    content: '\0046'
+  &-menu:before
+    content: '\004a'
+  &-eye:before
+    content: '\0043'
+  &-search:before
+    content: '\0047'
+  &-share:before
+    content: '\0045'
+
+  &-user:before
+    content: '\0049'
+  &-more:before
+    content: '\004b'
+
+  &-favorite:before
+    content: '\004f'
+  &-faovrite-solid:before
+    content: '\0050'
+
+  &-place:before
+    content: '\0052'
+  &-mail:before
+    content: '\0051'
+  &-phone:before
+    content: '\0053'
+
+  &-clock:before
+    content: '\0054'
+  &-clock-solid:before
+    content: '\0055'
+  &-wifi:before
+    content: '\0057'
+  &-notebook:before
+    content: '\0058'
+  // Arrow
+  &-arrow-left:before
+    content: '\0044'
+  &-arrow-right:before
+    content: '\004c'
+
+
+
+
+  // Support
+  &-flip:before
+    transform: scale(-1, 1)
+  &-animate
+    transition: transform 400ms
+
+  &--15-right
+    margin-right: 15px
+  &--15-left
+    margin-left: 15px
+  &--10-right
+    margin-right: 10px
+  &--10-left
+    margin-left: 10px
+
+  &--input
+    display: inline-block
+    width: auto
+    height: auto
+    min-width: 16px
+    padding: 4px 5px
+    font-size: 20px
+    font-weight: normal
+    line-height: 20px
+    text-align: center
+    color: #D8D8D8
+    position: absolute
+    left: 6px
+    top: 6px
+    bottom: 3px
+    z-index: 3
+
+  &-logo:before
+    content: '\0059'

@@ -1,0 +1,224 @@
+/* Large Devices, Wide Screens */
+@media only screen and (max-width: 1334px)
+  .navigation
+    &-card
+      &-container
+        &__menu
+          &__list
+            display: flex
+            flex-direction: column
+            &__item
+              margin: 0 20px 0 0
+            &--center
+              flex-direction: row
+    &-head
+      &-container
+        &--block
+          width: 100%
+        &-body
+          &--fluid
+            width: 100%
+    &-breadcrumb
+      width: 100%
+      &-list
+        margin: 0 0 0 15px
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width: 992px)
+  .navigation
+    &-card
+      &-container
+        &__social
+          max-width: 33%
+        &__menu
+          min-width: 33%
+
+/* Small Devices, Tablets */
+@media only screen and (max-width: 768px)
+  .navigation
+    &-card
+      &__mobile-view
+        width: 100%
+      &__top
+        padding: 0
+      &__brand--img
+        display: flex
+        width: 100%
+        align-items: center
+        justify-content: center
+      &--mobile-view
+        width: 100%
+      &-container
+        &__logo
+        &__menu
+          &__sidebar
+            padding: 36px 33px
+          &--center
+            padding-left: 0
+          &__logo
+            display: none
+        &__social
+          &__list
+            display: flex
+            flex-direction: row
+            &__item
+              display: none
+              &:first-child
+                display: block
+              &__link
+                width: 45px
+                height: 45px
+                &__icon
+                  font-size: 14px
+                  line-height: 14px
+                  height: 14px
+    &-head
+      &-container
+        &__title
+          line-height: 60px
+        &-body
+          padding: 0 4px
+          &__menu
+            &__item
+              padding: 10px 4px
+    &-breadcrumb
+      width: 100%
+      &-list
+        margin: 0 0 0 15px
+
+/* ломается шапка с навигацией */
+@media only screen and (max-width: 554px)
+  .navigation
+    &-head
+      &-container
+        &-body
+          &__menu
+            &__item
+              padding: 33px 10px
+    &-card
+      &__mobile-view
+        width: 100%
+      &__top
+        padding: 0
+      &__brand--img
+        display: flex
+        width: 100%
+        align-items: center
+        justify-content: center
+      &--mobile-view
+        width: 100%
+/* Extra Small Devices, Phones */
+@media only screen and (max-width: 480px)
+  .navigation
+    &-card
+      &__mobile-view
+        width: 100%
+      &__top
+        padding: 0
+      &__brand--img
+        display: flex
+        width: 100%
+        align-items: center
+        justify-content: center
+      &--mobile-view
+        width: 100%
+      &--lg
+        display: block
+      &-form
+        display: none
+      &-container
+        &__logo
+        &__menu
+          &__sidebar
+            padding: 36px 33px
+          &--center
+            padding-left: 0
+          &__logo
+            display: none
+          &--with_logo
+            &--lg
+              width: 100%
+              display: flex
+              justify-content: space-between
+      &-social
+        &__list
+          display: flex
+          flex-direction: row
+        &__item
+          display: none
+          &:first-child
+            display: block
+
+        &__link
+          width: 45px
+          height: 45px
+        &__icon
+          font-size: 14px
+          line-height: 14px
+          height: 14px
+    &-head
+      &-container
+        &--block
+          width: calc(100% - 30px)
+          margin: 0 15px
+        &__dropdown
+          position: relative
+          display: inline-block
+        &-body
+          &--block
+            padding: 0 15px
+          &--fluid
+            margin: 0 30px
+            width: calc(100% - 60px)
+          &__menu
+            display: none
+            position: absolute
+            background-color: #f9f9f9
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2)
+            min-width: 160px
+            z-index: 1
+            padding: 0
+            transform: translate3d(90%, 75%, 0)
+            &--view
+              display: block
+            &__item
+              padding: 12px 16px
+              text-decoration: none
+              display: block
+              &--active
+                color: #1875F0
+                border-bottom: none
+              &:hover
+                color: #1875F0
+                border-bottom: none
+
+        &__title
+          line-height: 60px
+    &-breadcrumb
+      width: 100%
+      &-list
+        margin: 0 0 0 15px
+
+/* ломается шапка с навигацией */
+@media only screen and (max-width: 370px)
+  .navigation
+    &-head
+      &-container
+        &-body
+          &__menu
+            transform: translate3d(55%, 75%, 0)
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width: 320px)
+  .navigation
+    &-card
+      &-container
+        &__menu
+          &__list
+            display: none
+    &-head
+      &-container
+        &-body
+          &__menu
+            &__item
+              font-size: 12px

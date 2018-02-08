@@ -1,0 +1,309 @@
+.card
+  margin: 15px
+  float: left
+  border-radius: 6px
+  display: block
+  text-rendering: optimizeLegibility
+  background-position: center
+  -webkit-font-smoothing: subpixel-antialiased
+  transition-timing-function: ease
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1)
+  &--main
+    width: calc(100% - 30px)
+    margin: 50px 15px
+    border: none
+    display: flex
+    justify-content: space-between
+    box-shadow: none
+    height: 360px
+  &--event
+    &--middle
+      width: 350px
+      background-color: #fff
+      height: 420px
+    &--big
+      width: 350px
+      height: 420px
+  &--mini
+    width: 350px
+    background-color: #fff
+    height: 330px
+    &--edges-no-margin
+      &:last-child
+        margin-right: 0
+      &:first-child
+        margin-left: 0
+
+  &--number
+    width: 255px
+    background-color: #1875F0
+    height: 240px
+  &--middle
+    background-color: #fff
+    height: 330px
+    width: 255px
+  &--big
+    height: 330px
+    width: 540px
+  &--small
+    width: 255px
+    height: 240px
+
+  // Там где тэг
+  &-head
+    &--main
+      display: flex
+      justify-content: center
+      align-items: flex-start
+    &--mini
+      height: 150px
+    &--event
+      &--middle
+        height: 211px
+    &--number
+      display: flex
+      justify-content: center
+      align-content: center
+      align-items: center
+    &--small
+      height: 55px
+    &--middle
+      height: 180px
+    &--big
+      display: flex
+      justify-content: center
+      align-content: center
+      align-items: center
+      height: 100px
+    &__tag
+      color: #fff
+      border-radius: 4px
+      font-weight: bolder
+      background-color: red
+      padding: 5px 10px
+      font-size: 9px
+      text-transform: uppercase
+      &--main
+        position: relative
+        margin-right: 0
+        font-size: 10px
+        letter-spacing: 1px
+        margin-left: 0
+      &--small
+        position: absolute
+        margin-top: 20px
+        margin-left: 20px
+      &--middle
+        position: absolute
+        margin-top: 20px
+        margin-left: 20px
+      &--number
+        background-color: rgba(0, 0, 0, 0.3)
+        margin-top: 50px
+        height: 24px
+      &--big
+        margin-top: 50px
+        height: 24px
+      &--transparent
+        letter-spacing: 1.25px
+        background-color: rgba(0, 0, 0, 0.3)
+
+  &__img
+    display: block
+    max-width: 100%
+    height: auto
+    &--mini
+      height: 150px
+      width: 100%
+      border-radius: 5px 5px 0 0
+      object-fit: cover
+    &--middle
+      border-radius: 5px 5px 0 0
+    &--big
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .1)
+      border-radius: 6px
+    &--small
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .1)
+      border-radius: 6px
+  // Что бы наложить затемнение на всю картинку
+  &-content
+    background: linear-gradient(to bottom, rgba(0, 0, 0, .30), rgba(0, 0, 0, 0.5))
+    border-radius: 6px
+    position: relative
+    width: 100%
+    height: 100%
+    &--main
+      background: none
+      display: flex
+      flex-direction: column
+      align-items: center
+      justify-content: center
+    &--small
+      width: 255px
+      height: 240px
+    &--event--big
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5))
+  // Название статей тут
+  &-body
+    padding: 20px 20px
+    &--mini
+      height: 120px
+      padding: 30px 30px
+    &--number
+      height: 50px
+    &--small
+      display: flex
+      align-items: flex-end
+      height: 123px
+    &--event--middle
+      height: 72px
+      padding: 0 20px
+    &--middle
+      height: 88px
+    &--big
+      height: 168px
+    &__title
+      font-weight: 500
+      &--mini
+        font-size: 18px
+        font-weight: 500
+        color: #666666
+        line-height: 30px
+      &--white
+        color: white
+
+      &--center
+        width: 250px
+        margin: 0 auto
+        text-align: center
+
+
+      &--main
+        line-height: 60px
+        font-size: 30px
+        color: #666666
+        margin-top: 10px
+        text-align: center
+      &--number
+        line-height: 50px
+        font-size: 48px
+        color: #fff
+        margin-top: 10px
+        text-align: center
+      &--middle
+        line-height: 23px
+        color: #666666
+        font-size: 16px
+      &--small
+        font-size: 14px
+        color: #fff
+        line-height: 23px
+      &--big
+        line-height: 40px
+        font-size: 24px
+        color: #FFFFFF
+        text-align: center
+      &--event--middle
+        font-size: 18px
+        color: #666666
+      &--event--big
+        color: #fff
+        font-size: 18px
+    &__description
+      margin-top: 15px
+      font-size: 13px
+      font-weight: 500
+      padding: 0 20px
+      color: #999999
+      line-height: 25px
+      text-align: center
+      &--white
+        color: white
+  // Описание числа
+  &-description
+    color: #fff
+    padding: 10px 20px
+    font-size: 14px
+    font-weight: 500
+    text-align: center
+  // Футер
+  &-footer
+    height: 62px
+    padding: 20px 30px
+    font-weight: 500
+    display: flex
+    justify-content: space-between
+    &--main
+      width: 50%
+
+    &--event
+      &--middle
+        padding: 20px 20px
+        border-top: none
+    &--big
+      border-top: 2px solid rgba(255, 255, 255, 0.4)
+    &--middle
+      border-top: 2px solid #F7F7F7
+
+    &__datetime
+      font-size: 12px
+      &--middle, &--main
+        color: #B3B3B3
+      &--big
+        color: #fff
+    &__icon
+      font-size: 20px
+      line-height: 20px
+      &--white
+        color: #fff
+    &__countcomment
+      font-size: 12px
+      display: flex
+      justify-content: flex-start
+      align-content: center
+      flex-direction: row
+      align-items: center
+      &--middle, &--main
+        color: #B3B3B3
+
+      &--big
+        color: #fff
+      &__number
+        padding-left: 15px
+    &__author
+      font-size: 13px
+      color: #fff
+    &__more
+      padding: 8px 19px
+      color: #B3B3B3
+      border: 2px solid #F5F5F5
+      font-size: 10px
+      border-radius: 4px
+      background-color: transparent
+      text-transform: uppercase
+      font-weight: bolder
+      transition: background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out
+      &:hover
+        color: #fff
+        background-color: #B3B3B3
+        text-decoration: none
+        border-color: #B3B3B3
+      &--event--big
+        color: #fff
+        border: none
+        padding: 10px 21px
+        background: rgba(0, 0, 0, 0.3)
+        &:hover
+          color: #fff
+          border: none
+          background: rgba(0, 0, 0, 1)
+  &__link
+    color: white
+    &--black
+      color: #666
+    &:hover
+      color: white
+      text-decoration: none
+  &__more
+    margin-top: 20px
+@import "media"
