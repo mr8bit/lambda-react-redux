@@ -10,6 +10,7 @@ const initialState = {
 
 export default function dataReducer(state = initialState, action) {
     switch (action.type) {
+
         case DATA_RECEIVE_PROTECTED_DATA:
             return Object.assign({}, state, {
                 data: action.payload.data,
@@ -20,6 +21,7 @@ export default function dataReducer(state = initialState, action) {
             return Object.assign({}, state, {
                 isFetching: true
             });
+
         default:
             return state;
     }

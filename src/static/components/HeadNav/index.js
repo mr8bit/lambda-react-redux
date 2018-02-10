@@ -10,7 +10,6 @@ export default class HeadNav extends Component {
     }
 
     toogleClass() {
-        console.log('nabvar', this.state.active);
         this.setState({active: !this.state.active});
     }
 

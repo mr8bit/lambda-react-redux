@@ -1,0 +1,49 @@
+.hide-in-lg
+  display: none
+
+.container-2
+  width: 1110px
+
+.between
+  display: flex
+  justify-content: space-between
+
+.show-in-lg-flex
+  display: flex
+/* Large Devices, Wide Screens */
+@media only screen and (max-width: 1200px)
+  //
+/* Medium Devices, Desktops */
+@media only screen and (max-width: 992px)
+  //
+
+/* Small Devices, Tablets */
+@media only screen and (max-width: 768px)
+  .hide-in-lg
+    display: block
+  .show-in-lg-flex
+    display: none
+  .container-2
+    width: 100%
+    padding: 0 4px
+  .between
+    flex-wrap: w
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width: 480px)
+  .hide-in-lg
+    display: block
+  .show-in-lg-flex
+    display: none
+  .container-2
+    width: 100%
+    padding: 0 4px
+/* Custom, iPhone Retina */
+@media only screen and (max-width: 320px)
+  .hide-in-lg
+    display: block
+  .show-in-lg-flex
+    display: none
+  .container-2
+    width: 100%
+    padding: 0 4px

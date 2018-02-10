@@ -1,45 +1,39 @@
-import React from 'react';
-import { push } from 'react-router-redux';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import './style.sass';
+import React from "react";
+import {connect} from "react-redux";
+import PropTypes from "prop-types";
+import {bindActionCreators} from "redux";
+import Card from "../../components/Card";
+import "./style.sass";
+
+import * as actionCreators from "../../actions/article";
 
 class HomeView extends React.Component {
 
     static propTypes = {
-        statusText: PropTypes.string,
-        userName: PropTypes.string,
-        dispatch: PropTypes.func.isRequired
+        isFetching: PropTypes.bool.isRequired,
+        data: PropTypes.array,
+        actions: PropTypes.shape({
+            fetchPosts: PropTypes.func.isRequired
+        }).isRequired
     };
 
     static defaultProps = {
-        statusText: '',
-        userName: ''
+        data: []
     };
 
-    goToProtected = () => {
-        this.props.dispatch(push('/protected'));
-    };
+    componentWillMount() {
+        this.props.actions.fetchPosts();
+    }
+
 
     render() {
+        console.log(this.props.isFetching)
         return (
             <div className="container">
-                <div className="text-center">
-                    <h1>Django React Redux Demo</h1>
-                    <h4>Hello, {this.props.userName || 'guest'}.</h4>
-                </div>
-                <div className="margin-top-medium text-center">
-                    <p>Attempt to access some <a onClick={this.goToProtected}><b>protected content</b></a>.</p>
-                </div>
-                <div className="margin-top-medium">
-                    {this.props.statusText ?
-                        <div className="alert alert-info">
-                            {this.props.statusText}
-                        </div>
-                        :
-                        null
-                    }
-                </div>
+                {this.props.isFetching === true ? <p className="text-center">Loading data...</p>
+                    :
+                    <Card card={this.props.data}/>
+                }
             </div>
         );
     }
@@ -47,10 +41,14 @@ class HomeView extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        userName: state.auth.userName,
-        statusText: state.auth.statusText
+        data: state.posts.data,
+        isFetching: state.posts.isFetching
     };
 };
-
-export default connect(mapStateToProps)(HomeView);
-export { HomeView as HomeViewNotConnected };
+const mapDispatchToProps = (dispatch) => {
+    return {
+        actions: bindActionCreators(actionCreators, dispatch)
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(HomeView);
+export {HomeView as HomeViewNotConnected};
