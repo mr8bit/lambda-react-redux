@@ -46,10 +46,7 @@ class HomeView extends React.Component {
 
         return (
             <div className="container">
-                {this.props.isFetching === true ? <p className="text-center">Loading data...</p>
-                    :
                     <CardList list={this.props.results}/>
-                }
                 <div className="card__more">
                     <button onClick={this.getOtherArticle.bind(this)}
                             className="btn  btn--small btn--rounded btn--no-border btn--full-width ">
