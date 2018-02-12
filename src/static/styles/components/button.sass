@@ -1,0 +1,104 @@
+.btn
+  display: inline-block
+  padding: .375rem 1rem
+  font-size: 12px
+  font-weight: 500
+  text-align: center
+  white-space: nowrap
+  vertical-align: middle
+  outline: none
+  cursor: pointer
+  user-select: none
+  text-transform: uppercase
+  border: 2px solid transparent
+  border-radius: 4px
+  transition: all 200ms
+  // START Type
+  &--gray-30
+    color: #fff
+    background-color: rgba(0, 0, 0, 0.3)
+    border-color: transparent
+    &:hover
+      text-decoration: none
+      color: #fff
+      background-color: rgba(0, 0, 0, 1)
+  &--primary
+    color: #fff
+    background-color: #0275d8
+    border-color: #0275d8
+    &:hover
+      color: #fff
+      background-color: #0256AD
+      border-color: #0256AD
+  &--secondary
+    color: #B3B3B3
+    background-color: #fff
+    border-color: #F5F5F5
+    &:hover
+      color: #fff
+      background-color: #0275d8
+      border-color: #0275d8
+  &--ghost
+    color: #B3B3B3
+    background-color: #fff
+    border-color: transparent
+    &:hover
+      color: #1875F0
+  &--no-border
+    background-color: transparent
+    color: #B3B3B3
+    alignment-baseline: middle
+    vertical-align: middle
+    text-transform: uppercase
+    font-weight: bolder
+    letter-spacing: 1.5px
+    &:hover
+      border: 2px solid #B3B3B3
+
+  // END Type
+
+  // START Size
+  &--full-width
+    width: calc(100% - 30px)
+    margin: 0 15px
+
+  &--extra-small
+    font-size: 9px
+    font-weight: bolder
+    line-height: 9px
+    letter-spacing: 1px
+    padding: 10px 20px
+  &--small
+    font-size: 10px
+    padding: 15px 30px
+    line-height: 10px
+    letter-spacing: 1.25px
+  &--big
+    font-size: 14px
+    padding: 23px 37px
+    line-height: 14px
+    letter-spacing: 2px
+  &--default
+    font-size: 12px
+    letter-spacing: 1.5px
+    line-height: 12px
+    padding: 20px 30px
+  // END Size
+
+  // START Border
+  &--rounded
+    border-radius: 30px
+  &--circle
+    width: 60px
+    height: 60px
+    text-align: center
+    padding: 17px 0
+    font-size: 20px
+    line-height: 30px
+    -webkit-border-radius: 30px
+    border-radius: 30px
+  &__icon-13
+    font-size: 13px
+    line-height: 10px
+    height: 10px
+    margin-left: 2px

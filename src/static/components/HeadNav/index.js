@@ -16,7 +16,7 @@ export default class HeadNav extends Component {
     render() {
         const {links} = this.props;
 
-        const menuList = this.props.links.map((linkItem, index) =>
+        const menuList = links.map((linkItem, index) =>
             <li key={index} className="navigation-card-sidebar__item  ">
                 <a href={linkItem.link} className="navigation-card-sidebar__link">{linkItem.name}</a>
             </li>

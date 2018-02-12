@@ -4,6 +4,6 @@ from blog import views as blog_views
 
 urlpatterns = [
     url(r'',
-        blog_views.UserList.as_view(),
+        blog_views.ArticleViewSet.as_view({'get': 'list'}),
         name='article_list'),
 ]

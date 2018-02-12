@@ -4,36 +4,58 @@ import PropTypes from "prop-types";
 import {bindActionCreators} from "redux";
 import Card from "../../components/Card";
 import "./style.sass";
-
+import CardList from './CardList'
 import * as actionCreators from "../../actions/article";
 
 class HomeView extends React.Component {
 
     static propTypes = {
         isFetching: PropTypes.bool.isRequired,
-        data: PropTypes.array,
+        results: PropTypes.array.isRequired,
+        count: PropTypes.number.isRequired,
+        next: PropTypes.string,
+        previous: PropTypes.string,
+
         actions: PropTypes.shape({
-            fetchPosts: PropTypes.func.isRequired
+            fetchPosts: PropTypes.func.isRequired,
+            getOtherArticle: PropTypes.func.isRequired,
         }).isRequired
     };
 
     static defaultProps = {
-        data: []
+        results: [],
+        count: 0,
+        next: '',
+        previous: ''
     };
 
     componentWillMount() {
         this.props.actions.fetchPosts();
     }
 
+    getOtherArticle() {
+        var prev = this.props.results;
+        console.log('get more', this.props.next);
+        if (this.props.next) {
+           var data = this.props.actions.getOtherArticle(this.props.next);
+           console.log(data)
+        }
+    }
 
     render() {
-        console.log(this.props.isFetching)
+
         return (
             <div className="container">
                 {this.props.isFetching === true ? <p className="text-center">Loading data...</p>
                     :
-                    <Card card={this.props.data}/>
+                    <CardList list={this.props.results}/>
                 }
+                <div className="card__more">
+                    <button onClick={this.getOtherArticle.bind(this)}
+                            className="btn  btn--small btn--rounded btn--no-border btn--full-width ">
+                        <span>ЗАГРУЗИТЬ</span>
+                        <span className="icon icon-arrow-right icon-rotate-90 btn__icon-13"></span></button>
+                </div>
             </div>
         );
     }
@@ -41,7 +63,10 @@ class HomeView extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        data: state.posts.data,
+        results: state.posts.results,
+        count: state.posts.count,
+        next: state.posts.next,
+        previous: state.posts.previous,
         isFetching: state.posts.isFetching
     };
 };

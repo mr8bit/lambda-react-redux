@@ -21,6 +21,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.admin',
 
+    'taggit',
+    'colorfield',
+
     # Article app
     'ckeditor',
     'blog',
@@ -34,6 +37,7 @@ INSTALLED_APPS = (
     'base',
 
 )
+
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
@@ -87,6 +91,9 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static_dist'),
 )
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 # store static files locally and serve with whitenoise
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
@@ -99,7 +106,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 20,
+    'PAGE_SIZE': 1,
     'DEFAULT_PARSER_CLASSES': (
         'rest_framework.parsers.JSONParser',
         'rest_framework.parsers.FormParser',

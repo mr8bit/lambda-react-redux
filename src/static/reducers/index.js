@@ -9,5 +9,5 @@ export default combineReducers({
     data: dataReducer,
     posts: postsReducer,
 
-    routing: routerReducer
+    routing: routerReducer,
 });
