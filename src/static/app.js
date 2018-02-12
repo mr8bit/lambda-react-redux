@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import HeadNav from './components/HeadNav'
+import HeadNav from './components/NavCard'
 import { authLogoutAndRedirect } from './actions/auth';
 import './styles/main.sass';
 

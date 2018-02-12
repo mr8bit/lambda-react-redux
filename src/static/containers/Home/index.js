@@ -5,6 +5,7 @@ import {bindActionCreators} from "redux";
 import "./style.sass";
 import CardList from "./CardList";
 import * as actionCreators from "../../actions/article";
+import NavHead from '../../components/NavCard/NavHead'
 
 class HomeView extends React.Component {
 
@@ -43,7 +44,7 @@ class HomeView extends React.Component {
 
     render() {
 
-        return (            <div className="container">
+        return (<div className="container">
                 <CardList list={this.props.results}/>
                 <div className="card__more">
                     <button onClick={this.getOtherArticle.bind(this)}
@@ -51,37 +52,8 @@ class HomeView extends React.Component {
                         <span>ЗАГРУЗИТЬ</span>
                         <span className="icon icon-arrow-right icon-rotate-90 btn__icon-13"></span></button>
                 </div>
+                <NavHead/>
 
-                <nav className="navigation-head navigation-head--fluid">
-                    <div className="navigation-head-container">
-                        <div className="navigation-head-container-body navigation-head-container-body--fluid">
-                            <h4 className="navigation-head-container__title ">Мероприятия</h4>
-                            <div className="navigation-head-container__dropdown">
-                                <button className="navigation-head-container__button">
-                                    <span className="icon icon-more"></span>
-                                </button>
-                            </div>
-
-                            <ul className="navigation-head-container-body__menu js-headDropDown">
-                                <li className="navigation-head-container-body__menu__item navigation-head-container-body__menu__item--active ">
-                                    Все
-                                </li>
-                                <li className="navigation-head-container-body__menu__item">
-                                    MeetUp
-                                </li>
-                                <li className="navigation-head-container-body__menu__item">
-                                    Лекции
-                                </li>
-                                <li className="navigation-head-container-body__menu__item">
-                                    Встречи
-                                </li>
-                                <li className="navigation-head-container-body__menu__item">
-                                    Календарь
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
 
             </div>
         );
