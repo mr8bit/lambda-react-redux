@@ -28,6 +28,9 @@ INSTALLED_APPS = (
     'ckeditor',
     'blog',
 
+    # Event app
+    'event',
+
     # Redux
     'rest_framework',
     'knox',

@@ -10,6 +10,7 @@ from base import views as base_views
 urlpatterns = [
     url(r'^api/v1/accounts/', include('accounts.urls', namespace='accounts')),
     url(r'^api/v1/article/', include('blog.urls', namespace='blog')),
+    url(r'^api/v1/events/', include('event.urls', namespace='event')),
     url(r'^api/v1/getdata/', include('base.urls', namespace='base')),
     url(r'^admin/', admin.site.urls),
 
