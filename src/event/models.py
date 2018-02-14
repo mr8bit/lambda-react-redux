@@ -1,6 +1,12 @@
 import locale
 
+from colorfield.fields import ColorField
 from django.db import models
+
+
+class Category(models.Model):
+    title = models.CharField(verbose_name="Название", max_length=120)
+    color = ColorField(verbose_name="Цвет", default='#FF0000')
 
 
 # Create your models here.

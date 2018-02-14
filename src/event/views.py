@@ -4,8 +4,9 @@ from __future__ import unicode_literals
 from rest_framework import mixins, viewsets
 from rest_framework.response import Response
 
-from .models import Event
-from .serializers import EventSerializer
+from .models import Event, Category
+from .serializers import EventSerializer, CategorySerializer
+from rest_framework import generics
 
 
 class ListModelMixin(object):
@@ -28,3 +29,8 @@ class ListModelMixin(object):
 class EvenrViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
+
+
+class CategoryViewSet(generics.ListAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
