@@ -29,6 +29,11 @@ TYPE_CHOICES = (
     ('mini', "Маленькая"),
 )
 
+SIZE_CHOICES = (
+    (50, "Большая"),
+    (25, "Средняя"),
+)
+
 
 # Create your models here.
 class Article(models.Model):
@@ -38,6 +43,7 @@ class Article(models.Model):
     slug = models.SlugField()
     description = RichTextField(verbose_name="Статья")
     image = models.ImageField(verbose_name='Изображение', default='')
+    size = models.IntegerField(verbose_name="Размер", choices=SIZE_CHOICES, default=25)
     creation_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="Автор", null=True, blank=True)
     tags = TaggableManager()

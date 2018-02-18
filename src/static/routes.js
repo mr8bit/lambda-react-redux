@@ -1,14 +1,15 @@
 import React from 'react';
-import { Route, Switch } from 'react-router';
-import { HomeView, LoginView, ProtectedView, NotFoundView } from './containers';
+import {Route, Switch} from 'react-router';
+import {HomeView, LoginView, ProtectedView, NotFoundView, ArticleView} from './containers';
 import requireAuthentication from './utils/requireAuthentication';
 
-export default(
+export default (
     <Switch>
-        <Route exact path="/" component={HomeView} />
-        <Route path="/login" component={LoginView} />
-        <Route path="/protected" component={requireAuthentication(ProtectedView)} />
-        <Route path="*" component={NotFoundView} />
+        <Route exact path="/" component={HomeView}/>
+        <Route path='/post/:slug' component={ArticleView}/>
+        <Route path="/login" component={LoginView}/>
+        <Route path="/protected" component={requireAuthentication(ProtectedView)}/>
+        <Route path="*" component={NotFoundView}/>
     </Switch>
 
 );
