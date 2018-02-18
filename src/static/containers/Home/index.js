@@ -3,23 +3,35 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {bindActionCreators} from "redux";
 import "./style.sass";
-import CardList from "./CardList";
+import CardList from "../../components/CardList/CardList";
+import EventList from "../../components/CardList/EventList";
 import * as actionCreators from "../../actions/article";
+import * as actionEventCategory from "../../actions/event/category";
+import * as actionEvent from "../../actions/event";
 import NavHead from '../../components/NavCard/NavHead'
 
 class HomeView extends React.Component {
 
     static propTypes = {
-        isFetching: PropTypes.bool.isRequired,
         results: PropTypes.array.isRequired,
         count: PropTypes.number.isRequired,
         next: PropTypes.string,
         previous: PropTypes.string,
 
-        actions: PropTypes.shape({
+        actionsPosts: PropTypes.shape({
             fetchPosts: PropTypes.func.isRequired,
             getOtherArticle: PropTypes.func.isRequired,
-        }).isRequired
+        }).isRequired,
+
+        actionEventCategory: PropTypes.shape({
+            fetchEventCategory: PropTypes.func.isRequired,
+        }),
+        actionEvent: PropTypes.shape({
+            filterEventByCategory: PropTypes.func.isRequired,
+            loadMoreEvents: PropTypes.func.isRequired,
+            fetchEvents: PropTypes.func.isRequired
+        })
+
     };
 
     static defaultProps = {
@@ -30,30 +42,31 @@ class HomeView extends React.Component {
     };
 
     componentWillMount() {
-        this.props.actions.fetchPosts();
+        this.props.actionsPosts.fetchPosts();
+        this.props.actionEventCategory.fetchEventCategory();
     }
 
     getOtherArticle() {
-        var prev = this.props.results;
-        console.log('get more', this.props.next);
-        if (this.props.next) {
-            var data = this.props.actions.getOtherArticle(this.props.next);
+        var prev = this.props.posts.results;
+        console.log('get more', this.props.posts.next);
+        if (this.props.posts.next) {
+            var data = this.props.actionsPosts.getOtherArticle(this.props.posts.next);
             console.log(data)
         }
     }
 
+    updateEventByFilter(categoryId) {
+        console.log('update by filter  ', categoryId);
+        this.props.actionEvent.filterEventByCategory(categoryId);
+
+    }
+
     render() {
-
-        return (<div className="container">
-                <CardList list={this.props.results}/>
-                <div className="card__more">
-                    <button onClick={this.getOtherArticle.bind(this)}
-                            className="btn  btn--small btn--rounded btn--no-border btn--full-width ">
-                        <span>ЗАГРУЗИТЬ</span>
-                        <span className="icon icon-arrow-right icon-rotate-90 btn__icon-13"></span></button>
-                </div>
-                <NavHead/>
-
+         return (<div className="container">
+                <CardList list={this.props.posts.results} nextUrl={this.props.posts.next} loadMore={this.getOtherArticle.bind(this)}/>
+                <NavHead categoryList={this.props.category.results}
+                         getEventbyFilter={this.updateEventByFilter.bind(this)}/>
+                <EventList list={this.props.events.results}  ></EventList>
 
             </div>
         );
@@ -62,16 +75,16 @@ class HomeView extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        results: state.posts.results,
-        count: state.posts.count,
-        next: state.posts.next,
-        previous: state.posts.previous,
-        isFetching: state.posts.isFetching
+        posts: state.posts,
+        category: state.category,
+        events: state.events
     };
 };
 const mapDispatchToProps = (dispatch) => {
     return {
-        actions: bindActionCreators(actionCreators, dispatch)
+        actionsPosts: bindActionCreators(actionCreators, dispatch),
+        actionEventCategory: bindActionCreators(actionEventCategory, dispatch),
+        actionEvent: bindActionCreators(actionEvent, dispatch),
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(HomeView);

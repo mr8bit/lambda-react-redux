@@ -20,7 +20,6 @@ export function requestPosts() {
 }
 
 export function receivePosts(data) {
-    console.log('recive',data);
     return {
         type: RECEIVE_POSTS,
         results: data.results,
@@ -31,7 +30,6 @@ export function receivePosts(data) {
 }
 
 export function loadMorePosts(data) {
-    console.log('recive',data);
     return {
         type: LOAD_NEXT_POSTS,
         results: data.results,

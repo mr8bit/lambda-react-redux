@@ -15,8 +15,12 @@ class Category(models.Model):
     slug = models.SlugField()
     color = ColorField(default='#FF0000')
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         verbose_name = "Категория"
+
 
 TYPE_CHOICES = (
     ('main', "Главная"),
@@ -24,6 +28,7 @@ TYPE_CHOICES = (
     ('big', "Большая"),
     ('mini', "Маленькая"),
 )
+
 
 # Create your models here.
 class Article(models.Model):
@@ -35,8 +40,10 @@ class Article(models.Model):
     image = models.ImageField(verbose_name='Изображение', default='')
     creation_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="Автор", null=True, blank=True)
-
     tags = TaggableManager()
+
+    def __str__(self):
+        return self.title
 
     class Meta:
         verbose_name = "Статья"

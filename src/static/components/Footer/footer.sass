@@ -1,0 +1,101 @@
+.footer
+  background-color: #fff
+  padding: 60px 0
+  margin-top: 30px
+  &_container
+    width: 1170px
+    margin: 0 auto
+    display: flex
+    justify-content: flex-start
+    padding: 0 30px
+
+  &-item
+    width: 33.333%
+    height: 180px
+    flex-direction: column
+    justify-content: space-between
+    display: flex
+    &__logo
+      width: 100%
+      line-height: 88px
+      font-size: 88px
+      color: #4D4D4D
+    &__policy
+      width: 100%
+      color: #B3B3B3
+      font-size: 14px
+      font-weight: 500
+    &__head
+      font-weight: 500
+      color: #666666
+      font-size: 16px
+    // Меню  START
+    &__menu
+      list-style: none
+      padding: 0
+      margin: 10px 0 0
+    &__cell
+      display: inline
+      width: 50%
+      float: left
+      margin-top: 20px
+    &__link
+      color: #9B9B9B
+      font-size: 14px
+      &:hover
+        text-decoration: none
+        color: #1875F0
+  // Меню END
+
+  // Контакты START
+  &-contacts
+    &__phone
+      color: #808080
+      font-size: 16px
+      &:hover
+        color: #1875F0
+        text-decoration: none
+    &__mail
+      color: #808080
+      font-size: 14px
+      margin-left: 20px
+      &:hover
+        text-decoration: none
+        color: #1875F0
+    &__border
+      height: 2px
+      background-color: #E6E6E6
+      width: 65px
+  // Контакты END
+
+  // Социальные START
+  &-social
+    display: flex
+    align-items: center
+    &__list
+      margin: 0
+      padding: 0
+    &__item
+      margin-left: 10px
+      display: inline-block
+    &__link
+      display: flex
+      align-items: center
+      align-content: center
+      justify-content: center
+      justify-items: center
+      border-radius: 50%
+      width: 40px
+      color: #D8D8D8
+      height: 40px
+      &:hover
+        color: #1875F0
+    &__icon
+      height: 18px
+      font-size: 18px
+      line-height: 18px
+
+// Социальные END
+
+
+@import "media"

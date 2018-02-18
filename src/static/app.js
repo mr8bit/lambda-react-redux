@@ -1,10 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
+import {connect} from 'react-redux';
+import {push} from 'react-router-redux';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import HeadNav from './components/NavCard'
-import { authLogoutAndRedirect } from './actions/auth';
+import Footer from './components/Footer'
+import {authLogoutAndRedirect} from './actions/auth';
 import './styles/main.sass';
 
 class App extends React.Component {
@@ -38,8 +39,6 @@ class App extends React.Component {
     };
 
 
-
-
     render() {
         const homeClass = classNames({
             active: this.props.location && this.props.location.pathname === '/'
@@ -55,10 +54,10 @@ class App extends React.Component {
             {
                 name: 'Главная',
                 link: '/'
-            },{
+            }, {
                 name: 'Войти',
                 link: '/login'
-            },{
+            }, {
                 name: 'Защищенный протокол',
                 link: '/protected'
             },
@@ -70,6 +69,7 @@ class App extends React.Component {
                 <div>
                     {this.props.children}
                 </div>
+                <Footer/>
             </div>
         );
     }
@@ -83,4 +83,4 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 export default connect(mapStateToProps)(App);
-export { App as AppNotConnected };
+export {App as AppNotConnected};

@@ -26,7 +26,7 @@ class ListModelMixin(object):
         return Response(serializer.data)
 
 
-class EvenrViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
+class EventViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
 
@@ -34,3 +34,21 @@ class EvenrViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
 class CategoryViewSet(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
+    def list(self, request):
+        # Note the use of `get_queryset()` instead of `self.queryset`
+        queryset = self.get_queryset()
+        serializer = CategorySerializer(queryset, many=True)
+        return Response(serializer.data)
+
+
+class SortEventByCategoryList(generics.ListAPIView):
+    serializer_class = EventSerializer
+
+    def get_queryset(self):
+        """
+        This view should return a list of all the purchases for
+        the user as determined by the username portion of the URL.
+        """
+        category = self.kwargs['category']
+        return Event.objects.filter(category=category)
