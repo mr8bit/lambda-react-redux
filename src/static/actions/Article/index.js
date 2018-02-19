@@ -1,9 +1,9 @@
 /**
  * Created by lambada on 09.02.18.
  */
-import {checkHttpStatus, parseJSON} from "../utils";
+import {checkHttpStatus, parseJSON} from "../../utils/index";
 import fetch from "isomorphic-fetch";
-import {SERVER_URL} from "../utils/config";
+import {SERVER_URL} from "../../utils/config";
 
 
 export const REQUEST_POSTS = 'REQUEST_POSTS';

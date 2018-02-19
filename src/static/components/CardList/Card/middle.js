@@ -6,9 +6,10 @@ import React, {Component} from "react";
 export default class CardMiddle extends Component {
     render() {
         const {card} = this.props;
+        const link =  `/post/${card.slug}`
         return (
             <div className="card card--middle">
-                <a href="#" className="card__link">
+                <a href={link} className="card__link">
                     <div className="card-head--middle">
 			            <span className="card-head__tag card-head__tag--middle"
                               style={{backgroundColor: card.categoryName.color}}>

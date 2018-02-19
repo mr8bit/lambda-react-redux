@@ -8,7 +8,7 @@ urlpatterns = [
         event_views.CategoryViewSet.as_view(),
         name='category_event_list'),
 
-    url('^sortbyCategory/(?P<category>[-\d]+)/', event_views.SortEventByCategoryList.as_view()),
+    url(r'^sortbyCategory/(?P<category>[-\d]+)/', event_views.SortEventByCategoryList.as_view()),
 
     url(r'',
         event_views.EventViewSet.as_view({'get': 'list'}),

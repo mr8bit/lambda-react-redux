@@ -1,6 +1,6 @@
 import fetch from "isomorphic-fetch";
 import {checkHttpStatus, parseJSON} from "../../utils";
-import {receivePosts, requestPosts} from "../article";
+import {receivePosts, requestPosts} from "../Article/index";
 import {SERVER_URL} from "../../utils/config";
 
 export const REQUEST_EVENTS = 'REQUEST_EVENTS';

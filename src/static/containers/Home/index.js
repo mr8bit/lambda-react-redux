@@ -5,7 +5,7 @@ import {bindActionCreators} from "redux";
 import "./style.sass";
 import CardList from "../../components/CardList/CardList";
 import EventList from "../../components/CardList/EventList";
-import * as actionCreators from "../../actions/article";
+import * as actionCreators from "../../actions/Article/index";
 import * as actionEventCategory from "../../actions/event/category";
 import * as actionEvent from "../../actions/event";
 import NavHead from '../../components/NavCard/NavHead'

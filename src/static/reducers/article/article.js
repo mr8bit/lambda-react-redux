@@ -1,7 +1,7 @@
 /**
  * Created by lambada on 09.02.18.
  */
-import {RECEIVE_POSTS, REQUEST_POSTS, LOAD_NEXT_POSTS} from "../actions/article";
+import {RECEIVE_POSTS, REQUEST_POSTS, LOAD_NEXT_POSTS} from "../../actions/Article/index";
 
 const initialState = {
     results: [],
