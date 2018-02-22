@@ -9,34 +9,34 @@ import fetch from "isomorphic-fetch";
 import {SERVER_URL} from "../../utils/config";
 
 
-export const REQUEST_POST = 'REQUEST_POSTS';
-export const RECEIVE_POST = 'RECEIVE_POSTS';
+export const REQUEST_ARTICLE = 'REQUEST_ARTICLE';
+export const RECEIVE_ARTICLE = 'RECEIVE_ARTICLE';
 
 
-export function requestPost() {
+export function requestArticle() {
     return {
-        type: REQUEST_POST,
+        type: REQUEST_ARTICLE,
 
     }
 }
 
-export function receivePost(data) {
+export function receiveArticle(data) {
     return {
-        type: RECEIVE_POST,
+        type: RECEIVE_ARTICLE,
         results: data
     }
 }
 
 
 
-export function fetchPosts(id) {
+export function fetchArticle(id) {
     return dispatch => {
-        dispatch(requestPost())
+        dispatch(requestArticle())
         return fetch(`${SERVER_URL}/api/v1/article/get/${id}/`)
             .then(checkHttpStatus)
             .then(parseJSON)
             .then((response) => {
-                dispatch(receivePost(response));
+                dispatch(receiveArticle(response));
             })
     }
 }

@@ -42,5 +42,4 @@ class OneArticleViewSet(generics.RetrieveAPIView):
         the user as determined by the username portion of the URL.
         """
         id = self.kwargs['id']
-        print(id)
         return Article.objects.filter(id=id)

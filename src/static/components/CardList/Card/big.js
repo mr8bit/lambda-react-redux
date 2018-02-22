@@ -6,7 +6,7 @@ import React, {Component} from "react";
 export default class CardBig extends Component {
     render() {
         const {card} = this.props;
-        const link = `/post/${card.slug}`;
+        const link = `/post/${card.id}`;
         return (
             <div className="card card--big" style={{backgroundImage: `url(${card.image})`}}>
                 <a href={link} className="card__link">

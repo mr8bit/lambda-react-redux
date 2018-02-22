@@ -1,18 +1,19 @@
 import React from "react";
 import './head.sass'
-export default class Article extends React.Component {
+export default class Head extends React.Component {
     render() {
+        const {title, image, date} = this.props;
         return (
-            <div className="article-header-card" >
+            <div className="article-header-card" style={{backgroundImage: `url(${image})`}}>
                 <div className="article-header-card-content">
                     <div className="article-header-card-content-left">
                         <div className="article-header-card-content-left-body">
                             <div className="article-header-card-content-left-body-head">
-                                <span className="label label--danger label--large">ПЕРЕВОД</span>
-                                <span className="article-header-card-content-left-body-head_date">24 Янв. 2018  14:34</span>
+                                <span className="label label--danger label--large">Новости</span>
+                                <span className="article-header-card-content-left-body-head_date">{date}</span>
                             </div>
                             <h1 className="article-header-card-content-left-body__title">
-                                Крохотный блокчейн на Python в 50 строк
+                                {title}
                             </h1>
                             <div className="article-header-card-content-left-body__line"></div>
                         </div>
