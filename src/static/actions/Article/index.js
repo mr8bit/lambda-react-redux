@@ -4,14 +4,25 @@
 import {checkHttpStatus, parseJSON} from "../../utils/index";
 import fetch from "isomorphic-fetch";
 import {SERVER_URL} from "../../utils/config";
+import {REQUEST_ARTICLE, RECEIVE_ARTICLE, REQUEST_POSTS, RECEIVE_POSTS, LOAD_NEXT_POSTS} from "../../constants";
+
+////// ЗАПРОС НА СТАТЬЮ ////////
+export function requestArticle() {
+    return {
+        type: REQUEST_ARTICLE,
+
+    }
+}
+////// ПОЛУЧИЛИ СТАТЬЮ ////////
+export function receiveArticle(data) {
+    return {
+        type: RECEIVE_ARTICLE,
+        results: data
+    }
+}
 
 
-export const REQUEST_POSTS = 'REQUEST_POSTS';
-export const RECEIVE_POSTS = 'RECEIVE_POSTS';
-export const LOAD_NEXT_POSTS = 'LOAD_NEXT_POSTS';
-
-export const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT';
-
+////// ЗАПРОС НА СПИСОК СТАТЕЙ ////////
 export function requestPosts() {
     return {
         type: REQUEST_POSTS,
@@ -19,6 +30,7 @@ export function requestPosts() {
     }
 }
 
+////// ПОЛУЧИЛИ СПИСОК СТАТЕЙ ////////
 export function receivePosts(data) {
     return {
         type: RECEIVE_POSTS,
@@ -29,6 +41,7 @@ export function receivePosts(data) {
     }
 }
 
+////// ПОЛУЧИЛИ СЛЕДУЩИЙ СПИСОК СТАТЕЙ ////////
 export function loadMorePosts(data) {
     return {
         type: LOAD_NEXT_POSTS,
@@ -39,21 +52,20 @@ export function loadMorePosts(data) {
     }
 }
 
-
-
-export function getOtherArticle(nextUrl) {
-    return dispatch =>{
+//////ЗАПРОС НА СТАТЬИ  НА СТРАНИЦЕ ПО URL //////
+export function fetchNextArticles(nextUrl) {
+    return dispatch => {
         dispatch(requestPosts())
         return fetch(nextUrl)
             .then(checkHttpStatus)
             .then(parseJSON)
-            .then((response)=>{
+            .then((response) => {
                 dispatch(loadMorePosts(response))
             })
     }
 }
-
-export function fetchPosts() {
+////// ЗАПРОС НА ПЕРВЫЙ СПИСОК СТАТЕЙ //////
+export function fetchArticles() {
     return dispatch => {
         dispatch(requestPosts())
         return fetch(`${SERVER_URL}/api/v1/article/`)
@@ -61,6 +73,19 @@ export function fetchPosts() {
             .then(parseJSON)
             .then((response) => {
                 dispatch(receivePosts(response));
+            })
+    }
+}
+
+///// ПОЛУЧИТЬ СТАТЬЮ ПО ЕЕ ID ////
+export function fetchArticle(id) {
+    return dispatch => {
+        dispatch(requestArticle())
+        return fetch(`${SERVER_URL}/api/v1/article/${id}/`)
+            .then(checkHttpStatus)
+            .then(parseJSON)
+            .then((response) => {
+                dispatch(receiveArticle(response));
             })
     }
 }

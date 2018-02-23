@@ -34,6 +34,7 @@ INSTALLED_APPS = (
     # Redux
     'rest_framework',
     'knox',
+'taggit_serializer',
     'django_extensions',
 
     'accounts',

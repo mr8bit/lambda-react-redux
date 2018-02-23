@@ -19,8 +19,8 @@ class HomeView extends React.Component {
         previous: PropTypes.string,
 
         actionsPosts: PropTypes.shape({
-            fetchPosts: PropTypes.func.isRequired,
-            getOtherArticle: PropTypes.func.isRequired,
+            fetchArticles: PropTypes.func.isRequired,
+            fetchNextArticles: PropTypes.func.isRequired,
         }).isRequired,
 
         actionEventCategory: PropTypes.shape({
@@ -42,15 +42,14 @@ class HomeView extends React.Component {
     };
 
     componentWillMount() {
-        this.props.actionsPosts.fetchPosts();
+        this.props.actionsPosts.fetchArticles();
         this.props.actionEventCategory.fetchEventCategory();
     }
 
     getOtherArticle() {
-        var prev = this.props.posts.results;
-        console.log('get more', this.props.posts.next);
-        if (this.props.posts.next) {
-            var data = this.props.actionsPosts.getOtherArticle(this.props.posts.next);
+         console.log('get more', this.props.posts.postsList.next);
+        if (this.props.posts.postsList.next) {
+            var data = this.props.actionsPosts.fetchNextArticles(this.props.posts.postsList.next);
             console.log(data)
         }
     }
@@ -63,7 +62,7 @@ class HomeView extends React.Component {
 
     render() {
          return (<div className="container">
-                <CardList list={this.props.posts.results} nextUrl={this.props.posts.next} loadMore={this.getOtherArticle.bind(this)}/>
+                <CardList list={this.props.posts.postsList.results} nextUrl={this.props.posts.postsList.next} loadMore={this.getOtherArticle.bind(this)}/>
                 <NavHead categoryList={this.props.category.results}
                          getEventbyFilter={this.updateEventByFilter.bind(this)}/>
                 <EventList list={this.props.events.results}  ></EventList>

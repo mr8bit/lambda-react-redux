@@ -1,10 +1,12 @@
 from blog import views as blog_views
-from django.conf.urls import url
+from django.conf.urls import url, include
+from rest_framework import routers
+router = routers.DefaultRouter()
+router.register(r'', blog_views.ArticleViewSet)
 
 urlpatterns = [
 
     url('^get/(?P<id>[-\w]+)/', blog_views.OneArticleViewSet.as_view()),
-    url(r'',
-        blog_views.ArticleViewSet.as_view(),
-        name='article_list'),
+    url(r'^', include(router.urls)),
+
 ]

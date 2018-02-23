@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import Article from "./../../components/Article";
-import * as actionArticle from "../../actions/Article/oneArticle";
+import * as actionArticle from "../../actions/Article";
 import {bindActionCreators} from "redux";
 
 
@@ -20,8 +20,9 @@ class ArticleView extends React.Component {
     }
 
     render() {
-        return (
-            <Article content={this.props.article.results}/>
+        return (<div>
+                {this.props.isFetching ?  <div> load </div> : <Article content={this.props.article.results}/>}
+            </div>
         )
     }
 }

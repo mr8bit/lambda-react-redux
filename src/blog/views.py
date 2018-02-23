@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from blog.models import Article
 from blog.serializers import ArticleSerializer, ArticleViewSerializer
-from rest_framework import generics
+from rest_framework import generics, viewsets
 from rest_framework.response import Response
 
 
@@ -22,20 +22,21 @@ class ListModelMixin(object):
         return Response(serializer.data)
 
 
-class ArticleViewSet(generics.ListAPIView):
+class ArticleViewSet(viewsets.ModelViewSet):
+    queryset = Article.objects.all()
     serializer_class = ArticleSerializer
+    lookup_field = 'id'
 
-    def get_queryset(self):
-        """
-        This view should return a list of all the purchases for
-        the user as determined by the username portion of the URL.
-        """
-        return Article.objects.all()
+    def get_object(self):
+        self.serializer_class = ArticleViewSerializer
+        id = self.kwargs['id']
+        return self.queryset.get(id=id)
 
 
 class OneArticleViewSet(generics.RetrieveAPIView):
     serializer_class = ArticleViewSerializer
     lookup_field = 'id'
+
     def get_queryset(self):
         """
         This view should return a list of all the purchases for

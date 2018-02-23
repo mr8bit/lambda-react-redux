@@ -74,29 +74,35 @@ class User(AbstractBaseUser):
     To be active, the user must register and confirm his email.
     """
 
-    GENDER_MALE = 'M'
-    GENDER_FEMALE = 'F'
+    GENDER_MALE = 'М'
+    GENDER_FEMALE = 'Ж'
     GENDER_CHOICES = (
-        (GENDER_MALE, 'Male'),
-        (GENDER_FEMALE, 'Female')
+        (GENDER_MALE, 'Мужской'),
+        (GENDER_FEMALE, 'Женский')
     )
 
     # we want primary key to be called id so need to ignore pytlint
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)  # pylint: disable=invalid-name
 
-    first_name = models.CharField(_('First Name'), max_length=50)
-    last_name = models.CharField(_('Last Name'), max_length=50)
-    email = models.EmailField(_('Email address'), unique=True)
+    first_name = models.CharField(_('Имя'), max_length=50)
+    last_name = models.CharField(_('Фамилия'), max_length=50)
+    email = models.EmailField(_('Почта'), unique=True)
+    position = models.CharField(_('Должность'), max_length=300, default='Участник')
+
+    image = models.ImageField(_("Фотография"), default='')
+
+
 
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default=GENDER_MALE)
 
     confirmed_email = models.BooleanField(default=False)
 
+
     is_staff = models.BooleanField(_('staff status'), default=False)
     is_superuser = models.BooleanField(_('superuser status'), default=False)
     is_active = models.BooleanField(_('active'), default=True)
 
-    date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
+    date_joined = models.DateTimeField(_('Дата регистрации'), auto_now_add=True)
     date_updated = models.DateTimeField(_('date updated'), auto_now=True)
 
     activation_key = models.UUIDField(unique=True, default=uuid.uuid4)  # email
