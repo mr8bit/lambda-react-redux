@@ -7,13 +7,9 @@ import Footer from "./Footer";
 
 export default class Article extends React.Component {
 
-    static propTypes = {
-        content: PropTypes.object.isRequired,
-    };
-
-    static defaultProps = {
-        content: ''
-    };
+    constructor(props) {
+        super(props)
+    }
 
     render() {
         const {content} = this.props;
@@ -23,6 +19,8 @@ export default class Article extends React.Component {
                 <Head title={content.title}
                       image={content.image}
                       date={content.dateCreate}
+                      category={content.categoryName}
+                      author_name={content.author.name}
                 />
                 <Body text={content.description}/>
                 <Footer tags={content.tags}
@@ -32,3 +30,4 @@ export default class Article extends React.Component {
         )
     }
 }
+

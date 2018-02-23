@@ -21,7 +21,7 @@ class ArticleView extends React.Component {
 
     render() {
         return (<div>
-                {this.props.isFetching ?  <div> load </div> : <Article content={this.props.article.results}/>}
+                {this.props.posts.activePost.post && <Article content={this.props.posts.activePost.post}/>}
             </div>
         )
     }
@@ -31,7 +31,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         ...state.resource,
         slug: ownProps.match.params.slug,
-        article: state.article
+        posts: state.posts,
     }
 }
 const mapDispatchToProps = (dispatch) => {

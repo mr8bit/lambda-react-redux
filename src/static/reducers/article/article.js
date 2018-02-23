@@ -62,7 +62,7 @@ export default function postsReducer(state = initialState, action) {
             return Object.assign({}, state, {
                 activePost: {
                     post: action.results,
-                    isFetching: true
+                    isFetching: false
                 }
             });
 

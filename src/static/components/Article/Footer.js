@@ -3,19 +3,17 @@ import "./footer.sass";
 
 export default class Footer extends React.Component {
 
-    componentWillMount() {
-         const {tags, author} = this.props;
-    }
 
     render() {
+        const {tags, author} = this.props;
         return (
             <div className="article-footer">
                 <div className="article-footer__top">
                     <div className="article-footer-author">
-                        <img className="article-footer-author__avatar"/>
+                        <img src={author.image} className="article-footer-author__avatar"/>
                         <div className="article-footer-author__info">
-                            <span className="article-footer-author__name">{this.props.author}</span>
-                            <span className="article-footer-author__position">Основатель</span>
+                            <span className="article-footer-author__name">{author.name}</span>
+                            <span className="article-footer-author__position">{author.position}</span>
                         </div>
                     </div>
                     <div className="article-footer-about_article">
@@ -40,10 +38,14 @@ export default class Footer extends React.Component {
                 </div>
                 <div className="article-footer__bottom">
                     <div className="article-footer-tags">
-                        <a href="#" className="article-footer-tags__link label label--default">codegasm</a>
-                        <a href="#" className="article-footer-tags__link label label--default">code</a>
-                        <a href="#" className="article-footer-tags__link label label--default">ML</a>
-                        <a href="#" className="article-footer-tags__link label label--default">python</a>
+                        {
+                            tags.map((item,index) => {
+                                return (
+                                    <a key={index} href="#" className="article-footer-tags__link label label--default">{item}</a>
+                                )
+                            })
+                        }
+
                     </div>
                     <div className="article-footer-share">
                         <span className="article-footer-share__name">Поделиться:</span>
