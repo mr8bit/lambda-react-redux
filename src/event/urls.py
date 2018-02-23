@@ -1,6 +1,13 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 
 from . import views as event_views
+from rest_framework import routers
+
+
+
+router = routers.DefaultRouter()
+router.register(r'', event_views.EventViewSet)
+
 
 urlpatterns = [
 
@@ -8,10 +15,7 @@ urlpatterns = [
         event_views.CategoryViewSet.as_view(),
         name='category_event_list'),
 
-    url(r'^sortbyCategory/(?P<category>[-\d]+)/', event_views.SortEventByCategoryList.as_view()),
 
-    url(r'',
-        event_views.EventViewSet.as_view({'get': 'list'}),
-        name='event_list'),
+    url(r'^', include(router.urls)),
 
 ]

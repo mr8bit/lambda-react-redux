@@ -18,7 +18,7 @@ export default class CardList extends React.Component {
             <div>{
                 list && list.map((item, index) => {
                         return (
-                            <Card key={index} card={item}/>
+                            <Card key={item.id} card={item}/>
                         )
                     }
                 )

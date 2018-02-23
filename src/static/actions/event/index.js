@@ -2,20 +2,20 @@ import fetch from "isomorphic-fetch";
 import {checkHttpStatus, parseJSON} from "../../utils";
 import {receivePosts, requestPosts} from "../Article/index";
 import {SERVER_URL} from "../../utils/config";
-
-export const REQUEST_EVENTS = 'REQUEST_EVENTS';
-export const RECEIVE_EVENTS= 'RECEIVE_EVENTS';
-export const LOAD_MORE_EVENTS = 'LOAD_MORE_EVENTS';
-export const LOAD_FILTERED_EVENTS = 'LOAD_FILTERED_EVENTS';
+import {REQUEST_EVENTS, RECEIVE_EVENTS, LOAD_MORE_EVENTS, LOAD_FILTERED_EVENTS, REQUEST_EVENTS_CATEGORY, RECEIVE_EVENTS_CATEGORY } from "../../constants";
 
 
+///////////// EVENT LIST //////////////
+
+
+///////////// ЗАПРОС НА EVENT LIST //////////////
 export function requestEvents() {
     return {
         type: REQUEST_EVENTS,
 
     }
 }
-
+//////// СОРТИРОВАННЫЕ ПО КАТЕГОРИЯМ //////////
 export function filteredEvents(data) {
     return {
         type: LOAD_FILTERED_EVENTS,
@@ -26,6 +26,7 @@ export function filteredEvents(data) {
     }
 }
 
+////// ПОЛУЧИЛИ EVENT ////////
 export function receiveEvents(data) {
     return {
         type: RECEIVE_EVENTS,
@@ -35,7 +36,7 @@ export function receiveEvents(data) {
         previous: data.previous,
     }
 }
-
+/////////////      ПОЛУЧИЛИ СЛЕДУЩИЙ СПИСОК EVENT    ////////////
 export function  receiveLoadMoreEvents(data) {
     return {
         type: LOAD_MORE_EVENTS,
@@ -46,11 +47,15 @@ export function  receiveLoadMoreEvents(data) {
     }
 }
 
+
+
+///// ПОЛУЧИТЬ СТАТЬЮ ПО ЕЕ ID ////
+
 export function filterEventByCategory(categoryId) {
-    console.log(`${SERVER_URL}/api/v1/events/sortbyCategory/${categoryId}/`);
+    console.log(`${SERVER_URL}/api/v1/events/?category=${categoryId}`);
     return dispatch =>{
         dispatch(requestEvents())
-        return fetch(`${SERVER_URL}/api/v1/events/sortbyCategory/${categoryId}/`)
+        return fetch(`${SERVER_URL}/api/v1/events/?category=${categoryId}`)
             .then(checkHttpStatus)
             .then(parseJSON)
             .then((response)=>{
@@ -59,7 +64,7 @@ export function filterEventByCategory(categoryId) {
     }
 }
 
-
+//////ЗАПРОС НА LIST EVENT  НА СТРАНИЦЕ ПО URL //////
 export function loadMoreEvents(nextUrl) {
     return dispatch =>{
         dispatch(requestEvents())
@@ -71,7 +76,7 @@ export function loadMoreEvents(nextUrl) {
             })
     }
 }
-
+////// ЗАПРОС НА ПЕРВЫЙ СПИСОК LIST EVENT //////
 export function fetchEvents() {
     return dispatch => {
         dispatch(requestEvents())
@@ -80,6 +85,53 @@ export function fetchEvents() {
             .then(parseJSON)
             .then((response) => {
                 dispatch(receiveEvents(response));
+            })
+    }
+}
+///// ПОЛУЧИТЬ СТАТЬЮ ПО ЕЕ ID ////
+
+export function fetchEvent(id) {
+    return dispatch => {
+        dispatch(requestEvents())
+        return fetch(`${SERVER_URL}/api/v1/events/${id}`)
+            .then(checkHttpStatus)
+            .then(parseJSON)
+            .then((response) => {
+                dispatch(receiveEvents(response));
+            })
+    }
+}
+
+
+
+
+
+
+
+////////////// CATEGORY ////////////
+export function requestEventsCategory() {
+    return {
+        type: REQUEST_EVENTS_CATEGORY,
+    }
+}
+
+export function receiveEventsCategory(data) {
+    console.log('receiveEventsCategory',data);
+    return {
+        type: RECEIVE_EVENTS_CATEGORY,
+        results: data,
+    }
+}
+
+
+export function fetchEventCategory() {
+    return dispatch => {
+        dispatch(requestEventsCategory())
+        return fetch(`${SERVER_URL}/api/v1/events/category/`)
+            .then(checkHttpStatus)
+            .then(parseJSON)
+            .then((response) => {
+                dispatch(receiveEventsCategory(response));
             })
     }
 }

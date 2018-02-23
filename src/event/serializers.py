@@ -8,7 +8,7 @@ class EventSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Event
-        fields = ('title', 'dateCreate', 'type', 'image',)
+        fields = ('id','title', 'dateCreate', 'type', 'image',)
 
 
 class CategorySerializer(serializers.ModelSerializer):

@@ -15,7 +15,7 @@ export default class Head extends React.Component {
                             <h1 className="article-header-card-content-left-body__title">
                                 {title}
                             </h1>
-                            <div className="article-header-card-content-left-body__line"></div>
+                            <div className="article-header-card-content-left-body__line" style={{borderColor: category.color}}></div>
                         </div>
                         <div className="article-header-card-content-left-footer">
                 <span className="article-header-card-content-left-footer-info">

@@ -1,0 +1,167 @@
+.panel
+  border-radius: 6px
+  &--big
+    background-color: #fff
+    width: 1110px
+    height: 600px
+    margin: -150px auto 0
+    display: flex
+    justify-content: space-between
+  &--small
+    height: auto
+    margin: -90px auto 0
+  &-contact
+    padding: 60px 65px
+    &__icon
+      font-size: 20px
+      color: #D8D8D8
+      margin-right: 20px
+    &__title
+      font-size: 14px
+      line-height: 30px
+      letter-spacing: 1.5px
+      color: #666666
+      font-weight: bolder
+      display: flex
+      justify-content: space-around
+      flex-direction: row
+      &__opacity
+        opacity: 0.3
+    &__type
+      margin-top: 60px
+      &:first-child
+        margin-top: 0
+    &__list
+      width: 260px
+      padding: 0
+      margin: 0
+    &__item
+      display: flex
+      align-items: center
+      list-style: none
+      color: #666666
+      font-size: 13px
+      line-height: 30px
+      margin-top: 40px
+      &:first-child
+        margin-top: 30px
+
+    &__link
+      color: #666666
+      &:hover
+        color: #1875F0
+
+  &__map
+    iframe
+      width: 100%
+      height: 100%
+      border-radius: 6px 0 6px 0
+  &__about
+    padding: 65px 205px
+  &__text
+    color: #666666
+    font-size: 16px
+    line-height: 30px
+  &-grid
+    margin: 0 auto
+    display: flex
+    width: 1110px
+    justify-content: center
+    flex-wrap: wrap
+    &__item
+      width: 25%
+
+      height: 255px
+    &__name
+      font-size: 16px
+      color: #fff
+      font-weight: 500
+      line-height: 30px
+    &__position
+      font-size: 12px
+      color: #fff
+      opacity: 0.5
+      font-weight: bold
+    &__img
+      width: 100%
+      background-position: center
+      background-size: cover
+      height: 100%
+      position: relative
+      padding-bottom: 50px
+      &:hover .panel-grid__social
+        transform: translateY(0%)
+        visibility: visible
+        opacity: 1
+      &:hover .panel-grid__description
+        transform: translateY(-67%)
+    &__description
+      display: flex
+      transition: .3s ease-out
+      flex-direction: column
+      padding: 30px 30px
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent)
+      position: absolute
+      bottom: 0
+      width: 100%
+    &__social
+      transform: translateY(100%)
+      position: absolute
+      bottom: 0
+      display: flex
+      visibility: hidden
+      width: 100%
+      background: #1875F0
+      padding: 20px 30px
+      box-sizing: border-box
+      justify-content: center
+      flex-direction: row
+      opacity: 0
+      transition: .3s ease-out
+    &__icon
+      margin: 0 10px
+      color: white
+      font-size: 20px
+    &__meetup
+      padding: 50px 70px
+      background: #fff
+      height: 205px
+      width: 100%
+      display: flex
+      align-items: center
+      justify-content: center
+      border-left: 2px solid #F5F5F5
+      border-top: 2px solid #F5F5F5
+      &:nth-child(-n+5)
+        border-top: none
+      &:nth-child(n+6)
+        border-left: none
+        border-right: 2px solid #f5f5f5
+        border-bottom: none
+      &:nth-child(-n+1)
+        border-left: none
+      &:last-child
+        border-right: none
+
+@-webkit-keyframes slide-top
+  0%
+    transform: translateY(0)
+  100%
+    transform: translateY(-67%)
+    opacity: 1
+
+@-webkit-keyframes slide-down
+  0%
+    opacity: 0
+    transform: translateY(100%)
+  100%
+    opacity: 1
+    transform: translateY(0)
+
+$class-slug: panel !default
+@for $i from 1 through 10
+  .#{$class-slug}__#{$i}
+    width: $i*10+%
+    height: 100%
+
+@import "media"

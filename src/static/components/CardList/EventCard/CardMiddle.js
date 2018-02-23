@@ -12,7 +12,7 @@ export default class CardMiddle extends Component {
 			<span className="card-head__tag card-head__tag--middle card-head__tag--transparent ">
 				лекции
 			</span>
-                    <img className="card__img card__img--middle" src="img/card/event_middle.png"/>
+                    <img className="card__img card__img--middle" src={card.image}/>
                 </div>
                 <div className="card-footer card-footer--event--middle">
                     <div className="card-footer__datetime card-footer__datetime--middle">
@@ -22,8 +22,7 @@ export default class CardMiddle extends Component {
                 <div className="card-body card-body--event--middle">
                     <a className="card__link" href="#">
                         <div className="card-body__title card-body__title--event--middle">
-                            Машинное обучение #3 <br/>
-                            Методы Оптимизации
+                            {card.title}
                         </div>
                     </a>
                 </div>

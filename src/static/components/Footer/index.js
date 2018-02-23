@@ -1,5 +1,7 @@
 import React from "react";
 import './footer.sass'
+import './_media.sass'
+
 export default class Footer extends React.Component {
 
 

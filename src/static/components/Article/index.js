@@ -2,7 +2,7 @@ import React from "react";
 import Head from "./Head";
 import Body from "./Body";
 import PropTypes from 'prop-types';
-
+import './_media.sass'
 import Footer from "./Footer";
 
 export default class Article extends React.Component {
