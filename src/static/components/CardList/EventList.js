@@ -12,7 +12,7 @@ export default class EventList extends React.Component {
         console.log(list)
         return (
             <div>{
-                list && list.map((item) => {
+                 list.map((item) => {
                         return (
                             <Card key={item.id} card={item}/>
                         )

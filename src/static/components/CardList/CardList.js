@@ -16,8 +16,9 @@ export default class CardList extends React.Component {
         const {list, nextUrl} = this.props;
         return (
             <div>{
-                list && list.map((item, index) => {
+                list.map((item, index) => {
                         return (
+
                             <Card key={item.id} card={item}/>
                         )
                     }

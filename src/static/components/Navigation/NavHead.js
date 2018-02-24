@@ -40,7 +40,7 @@ export default class NavHead extends React.Component {
                                 Все
                             </li>
                             {
-                                categoryList && categoryList.map((item, index) => {
+                                 categoryList.map((item, index) => {
                                         return (
                                             <li key={item.id} onClick={this.sortFilter.bind(this, index, item.id)}
                                                 className={index == this.state.activeCategory ? "navigation-head-container-body__menu__item navigation-head-container-body__menu__item--active" : "navigation-head-container-body__menu__item"}>

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'react-router-redux';
+import {Provider} from 'react-redux';
+import {ConnectedRouter} from 'react-router-redux';
 import PropTypes from 'prop-types';
 
 import routes from '../../routes';
@@ -15,18 +15,14 @@ export default class Root extends React.Component {
 
     render() {
         return (
-            <div>
+            <Provider store={this.props.store}>
+                <App>
+                    <ConnectedRouter history={this.props.history}>
+                        {routes}
+                    </ConnectedRouter>
+                </App>
+            </Provider>
 
-                <Provider store={this.props.store}>
-                    <div>
-                        <App>
-                            <ConnectedRouter history={this.props.history}>
-                                {routes}
-                            </ConnectedRouter>
-                        </App>
-                    </div>
-                </Provider>
-            </div>
         );
     }
 }

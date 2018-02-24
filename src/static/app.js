@@ -3,10 +3,12 @@ import {connect} from 'react-redux';
 import {push} from 'react-router-redux';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import HeadNav from './components/NavCard'
+import NavCard from './components/Navigation/NavCard'
 import Footer from './components/Footer'
 import {authLogoutAndRedirect} from './actions/auth';
 import './styles/main.sass';
+import PreloaderIcon, {ICON_TYPE} from 'react-preloader-icon';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
 
 class App extends React.Component {
     static propTypes = {
@@ -21,6 +23,10 @@ class App extends React.Component {
     static defaultProps = {
         location: undefined
     };
+
+    state = {
+        preloadEnd: false
+    }
 
     logout = () => {
         this.props.dispatch(authLogoutAndRedirect());
@@ -38,17 +44,20 @@ class App extends React.Component {
         this.props.dispatch(push('/protected'));
     };
 
+    componentWillMount() {
+        console.log('componentWillMount from App', this.props.location)
+
+    }
+
+    componentDidMount() {
+        setTimeout(function () {
+            this.setState({preloadEnd: true});
+        }.bind(this), 1000)
+        console.log('componentDidMount from App', this.props.location)
+
+    }
 
     render() {
-        const homeClass = classNames({
-            active: this.props.location && this.props.location.pathname === '/'
-        });
-        const protectedClass = classNames({
-            active: this.props.location && this.props.location.pathname === '/protected'
-        });
-        const loginClass = classNames({
-            active: this.props.location && this.props.location.pathname === '/login'
-        });
 
         const links = [
             {
@@ -62,13 +71,33 @@ class App extends React.Component {
                 link: '/protected'
             },
         ]
-
+        console.log('hello from App', this.props.location)
         return (
             <div className="app">
-                <HeadNav links={links}/>
-                <div>
-                    {this.props.children}
-                </div>
+                <NavCard links={links}/>
+                {this.state.preloadEnd ?
+                    <ReactCSSTransitionGroup
+                        transitionName="animation"
+                        transitionAppear={true}
+                        transitionAppearTimeout={400}
+                        component="div"
+                        transitionEnterTimeout={1000}
+                        transitionLeaveTimeout={1000}>
+                        <div className="animation">
+                            {this.props.children}
+                        </div>
+                    </ReactCSSTransitionGroup>
+                    :
+                    <div className='preloader'>
+                        <PreloaderIcon
+                            type={ICON_TYPE.PUFF}
+                            size={60}
+                            strokeWidth={8}
+                            strokeColor="#4d4d4d"
+                            duration={800}
+                        />
+                    </div>
+                }
                 <Footer/>
             </div>
         );

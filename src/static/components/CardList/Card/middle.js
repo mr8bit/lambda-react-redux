@@ -2,12 +2,19 @@
  * Created by lambada on 09.02.18.
  */
 import React, {Component} from "react";
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
 
 export default class CardMiddle extends Component {
     render() {
         const {card} = this.props;
         const link =  `/post/${card.id}`
-        return (
+        return (<ReactCSSTransitionGroup
+                transitionName="card"
+                transitionAppear={true}
+                transitionAppearTimeout={400}
+                component="div"
+                transitionEnterTimeout={1000}
+                transitionLeaveTimeout={1000}>
             <div className="card card--middle">
                 <a href={link} className="card__link">
                     <div className="card-head--middle">
@@ -33,6 +40,7 @@ export default class CardMiddle extends Component {
                     </div>
                 </a>
             </div>
+            </ReactCSSTransitionGroup>
         )
     }
 }

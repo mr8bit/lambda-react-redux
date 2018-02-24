@@ -2,11 +2,19 @@
  * Created by lambada on 09.02.18.
  */
 import React, {Component} from "react";
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
 
 export default class CardMiddle extends Component {
     render() {
         const {card} = this.props;
         return (
+            <ReactCSSTransitionGroup
+                transitionName="card"
+                transitionAppear={true}
+                transitionAppearTimeout={400}
+                component="div"
+                transitionEnterTimeout={1000}
+                transitionLeaveTimeout={1000}>
             <div className="card card--event--middle">
                 <div className="card-head--event--middle">
 			<span className="card-head__tag card-head__tag--middle card-head__tag--transparent ">
@@ -36,7 +44,7 @@ export default class CardMiddle extends Component {
                 </div>
             </div>
 
-
+            </ReactCSSTransitionGroup>
         )
     }
 }

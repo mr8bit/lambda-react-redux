@@ -9,7 +9,6 @@ from taggit_serializer.serializers import (TagListSerializerField,
 
 class AuthorSerizlizer(serializers.ModelSerializer):
     name = serializers.ReadOnlyField(source='get_full_name')
-
     class Meta:
         model = User
         fields = (
@@ -20,10 +19,11 @@ class AuthorSerizlizer(serializers.ModelSerializer):
 class ArticleSerializer(serializers.ModelSerializer):
     categoryName = serializers.ReadOnlyField(source='getCategory')
     dateCreate = serializers.ReadOnlyField(source='getDateCreate')
+    author = AuthorSerizlizer(read_only=True, many=False)
 
     class Meta:
         model = Article
-        fields = ('id', 'title', 'slug', 'image', 'categoryName', 'dateCreate', 'type')
+        fields = ('id', 'title', 'slug', 'image', 'categoryName', 'dateCreate', 'type', 'author')
 
 
 class ArticleViewSerializer(TaggitSerializer, serializers.ModelSerializer):

@@ -22,7 +22,10 @@ export default function postsReducer(state = initialState, action) {
 
         case REQUEST_POSTS:
             return Object.assign({}, state, {
-                postsList: {isFetching: true, results: state.postsList.results}
+                postsList: {
+                    isFetching: true,
+                    results: state.postsList.results
+                }
             });
 
         case LOAD_NEXT_POSTS:

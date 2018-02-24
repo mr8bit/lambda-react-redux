@@ -7,7 +7,7 @@ import CardList from "../../components/CardList/CardList";
 import EventList from "../../components/CardList/EventList";
 import * as actionCreators from "../../actions/Article/index";
 import * as actionEvent from "../../actions/event";
-import NavHead from '../../components/NavCard/NavHead'
+import NavHead from '../../components/Navigation/NavHead'
 
 class HomeView extends React.Component {
 
@@ -36,7 +36,7 @@ class HomeView extends React.Component {
         previous: ''
     };
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.actionsPosts.fetchArticles();
         this.props.actionEvent.fetchEventCategory();
     }
@@ -64,12 +64,31 @@ class HomeView extends React.Component {
     }
 
     render() {
-        return (<div className="container">
-                <CardList list={this.props.posts.postsList.results} loadMore={this.getOtherArticle.bind(this)}/>
-                <NavHead categoryList={this.props.events.eventCategoryList.results}
-                         getEventbyFilter={this.updateEventByFilter.bind(this)}/>
-                <EventList list={this.props.events.eventList.results}
-                           loadMore={this.getOtherEvent.bind(this)}></EventList>
+        return (<div>
+
+                {this.props.posts.postsList.results
+                && this.props.events.eventList.results &&
+                this.props.events.eventCategoryList.results
+                    ?
+                    <div className="container">
+                        <CardList list={this.props.posts.postsList.results} loadMore={this.getOtherArticle.bind(this)}/>
+                        <NavHead categoryList={this.props.events.eventCategoryList.results}
+                                 getEventbyFilter={this.updateEventByFilter.bind(this)}/>
+                        <EventList list={this.props.events.eventList.results}
+                                   loadMore={this.getOtherEvent.bind(this)}></EventList>
+                    </div>
+                    :
+                    <div className='preloader'>
+                        <PreloaderIcon
+                            type={ICON_TYPE.PUFF}
+                            size={60}
+                            strokeWidth={8}
+                            strokeColor="#4d4d4d"
+                            duration={800}
+                        />
+                    </div>
+                }
+
 
             </div>
         );

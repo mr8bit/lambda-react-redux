@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 import Article from "./../../components/Article";
 import * as actionArticle from "../../actions/Article";
 import {bindActionCreators} from "redux";
-
+import NavBreadcrumb from "./../../components/Navigation/NavBreadcrumb";
+import PreloaderIcon, {ICON_TYPE} from 'react-preloader-icon';
 
 class ArticleView extends React.Component {
 
@@ -15,13 +16,31 @@ class ArticleView extends React.Component {
         }).isRequired,
     };
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.actionArticle.fetchArticle(this.props.slug);
     }
 
     render() {
         return (<div>
-                {this.props.posts.activePost.post && <Article content={this.props.posts.activePost.post}/>}
+                {this.props.posts.activePost.post ?
+                    <div>
+                        <NavBreadcrumb
+                            nameArticle={this.props.posts.activePost.post.title}
+                            category={this.props.posts.activePost.post.categoryName.name}/>
+                        <Article content={this.props.posts.activePost.post}/>
+                    </div>
+                    :
+                    <div className='preloader'>
+                        <PreloaderIcon
+                            type={ICON_TYPE.PUFF}
+                            size={60}
+                            strokeWidth={8}
+                            strokeColor="#4d4d4d"
+                            duration={800}
+                        />
+                    </div>
+                }
+
             </div>
         )
     }

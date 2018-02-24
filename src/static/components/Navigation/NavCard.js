@@ -4,7 +4,7 @@
 import React, {Component} from "react";
 import "./head.sass";
 
-export default class HeadNav extends Component {
+export default class NavCard extends Component {
     state = {
         active: false
     }

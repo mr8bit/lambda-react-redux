@@ -9,7 +9,7 @@ SECRET_KEY = 'ajsdgas7&*kosdsa21[]jaksdhlka-;kmcv8l$#diepsm8&ah^'
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost']
 
 # Application definition
 
@@ -34,14 +34,12 @@ INSTALLED_APPS = (
     # Redux
     'rest_framework',
     'knox',
-'taggit_serializer',
+    'taggit_serializer',
     'django_extensions',
 
     'accounts',
     'base',
-
 )
-
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
