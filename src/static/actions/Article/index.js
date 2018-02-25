@@ -4,7 +4,7 @@
 import {checkHttpStatus, parseJSON} from "../../utils/index";
 import fetch from "isomorphic-fetch";
 import {SERVER_URL} from "../../utils/config";
-import {REQUEST_ARTICLE, RECEIVE_ARTICLE, REQUEST_POSTS, RECEIVE_POSTS, LOAD_NEXT_POSTS} from "../../constants";
+import {REQUEST_ARTICLE, RECEIVE_ARTICLE, REQUEST_POSTS, RECEIVE_POSTS, LOAD_NEXT_POSTS,RECEIVE_MAIN} from "../../constants";
 
 ////// ЗАПРОС НА СТАТЬЮ ////////
 export function requestArticle() {
@@ -17,6 +17,14 @@ export function requestArticle() {
 export function receiveArticle(data) {
     return {
         type: RECEIVE_ARTICLE,
+        results: data
+    }
+}
+
+////// ПОЛУЧИЛИ ГЛАВНУЮ СТАТЬЮ ////////
+export function receiveMainArticle(data) {
+    return {
+        type: RECEIVE_MAIN,
         results: data
     }
 }
@@ -89,3 +97,19 @@ export function fetchArticle(id) {
             })
     }
 }
+
+
+///// ПОЛУЧИТЬ ГЛАВНУЮ СТАТЬЮ  ////
+export function fetchMainArticle() {
+    return dispatch => {
+        dispatch(requestArticle())
+        return fetch(`${SERVER_URL}/api/v1/article/main/`)
+            .then(checkHttpStatus)
+            .then(parseJSON)
+            .then((response) => {
+                dispatch(receiveMainArticle(response));
+            })
+    }
+}
+
+

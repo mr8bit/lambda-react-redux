@@ -2,45 +2,40 @@
 from __future__ import unicode_literals
 
 from blog.models import Article
-from blog.serializers import ArticleSerializer, ArticleViewSerializer
+from blog.serializers import ArticleSerializer, ArticleViewSerializer,MainArticleSerializer
 from rest_framework import generics, viewsets
+from rest_framework.response import Response
+from rest_framework.decorators import list_route
+from rest_framework.decorators import api_view, renderer_classes
+from rest_framework import renderers, response, schemas, pagination
 from rest_framework.response import Response
 
 
-class ListModelMixin(object):
-    """
-    List a queryset.
-    """
-
-    def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
-        page = self.paginate_queryset(queryset)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
+class ExamplePagination(pagination.PageNumberPagination):
+    page_size = 5
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
+    pagination_class = ExamplePagination
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
     lookup_field = 'id'
+
+    @list_route(methods=['get'])
+    def main(self, request):
+        self.serializer_class = MainArticleSerializer
+        main = self.queryset.filter(type='main').first()
+        serializer = self.get_serializer(main, many=False)
+        return Response(serializer.data)
 
     def get_object(self):
         self.serializer_class = ArticleViewSerializer
         id = self.kwargs['id']
         return self.queryset.get(id=id)
 
-
-class OneArticleViewSet(generics.RetrieveAPIView):
-    serializer_class = ArticleViewSerializer
-    lookup_field = 'id'
-
     def get_queryset(self):
-        """
-        This view should return a list of all the purchases for
-        the user as determined by the username portion of the URL.
-        """
-        id = self.kwargs['id']
-        return Article.objects.filter(id=id)
+        tags = self.request.query_params.get('tags', None)
+        if tags:
+            print(tags)
+            return self.queryset.filter(tags__name__in=[tags])
+        return self.queryset.all().exclude(type='main')

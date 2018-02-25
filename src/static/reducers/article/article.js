@@ -1,7 +1,10 @@
 /**
  * Created by lambada on 09.02.18.
  */
-import {REQUEST_ARTICLE, RECEIVE_ARTICLE, REQUEST_POSTS, RECEIVE_POSTS, LOAD_NEXT_POSTS} from "../../constants";
+import {
+    REQUEST_ARTICLE, RECEIVE_ARTICLE, REQUEST_POSTS, RECEIVE_POSTS, LOAD_NEXT_POSTS,
+    RECEIVE_MAIN
+} from "../../constants";
 
 const initialState = {
     postsList: {
@@ -15,6 +18,10 @@ const initialState = {
         post: null,
         isFetching: false
     },
+    mainPost: {
+        post: null,
+        isFetching: false
+    }
 };
 
 export default function postsReducer(state = initialState, action) {
@@ -37,6 +44,15 @@ export default function postsReducer(state = initialState, action) {
                     next: action.next,
                     previous: action.previous,
                     isFetching: false,
+                }
+            });
+
+
+        case RECEIVE_MAIN:
+            return Object.assign({}, state, {
+                mainPost: {
+                    post: action.results,
+                    isFetching: false
                 }
             });
 

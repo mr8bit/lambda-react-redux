@@ -8,6 +8,8 @@ import EventList from "../../components/CardList/EventList";
 import * as actionCreators from "../../actions/Article/index";
 import * as actionEvent from "../../actions/event";
 import NavHead from '../../components/Navigation/NavHead'
+import PreloaderIcon, {ICON_TYPE} from 'react-preloader-icon';
+import CardMain from "../../components/CardList/Card/Main";
 
 class HomeView extends React.Component {
 
@@ -18,6 +20,7 @@ class HomeView extends React.Component {
         previous: PropTypes.string,
         actionsPosts: PropTypes.shape({
             fetchArticles: PropTypes.func.isRequired,
+            fetchMainArticle: PropTypes.func.isRequired,
             fetchNextArticles: PropTypes.func.isRequired,
         }).isRequired,
         actionEvent: PropTypes.shape({
@@ -38,6 +41,7 @@ class HomeView extends React.Component {
 
     componentDidMount() {
         this.props.actionsPosts.fetchArticles();
+        this.props.actionsPosts.fetchMainArticle();
         this.props.actionEvent.fetchEventCategory();
     }
 
@@ -64,13 +68,15 @@ class HomeView extends React.Component {
     }
 
     render() {
+        console.log(this.props.events.eventList.results);
         return (<div>
 
-                {this.props.posts.postsList.results
+                {this.props.posts.postsList.results && this.props.posts.mainPost.post
                 && this.props.events.eventList.results &&
                 this.props.events.eventCategoryList.results
                     ?
                     <div className="container">
+                        <CardMain card={this.props.posts.mainPost.post} />
                         <CardList list={this.props.posts.postsList.results} loadMore={this.getOtherArticle.bind(this)}/>
                         <NavHead categoryList={this.props.events.eventCategoryList.results}
                                  getEventbyFilter={this.updateEventByFilter.bind(this)}/>

@@ -42,6 +42,7 @@ class Article(models.Model):
     type = models.CharField(choices=TYPE_CHOICES, default='mid', verbose_name='Тип', max_length=4)
     slug = models.SlugField()
     description = RichTextField(verbose_name="Статья")
+    short_description = models.TextField(verbose_name="Короткое описание", default='')
     image = models.ImageField(verbose_name='Изображение', default='')
     size = models.IntegerField(verbose_name="Размер", choices=SIZE_CHOICES, default=25)
     creation_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)

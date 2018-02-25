@@ -6,8 +6,5 @@ router = routers.DefaultRouter()
 router.register(r'', blog_views.ArticleViewSet)
 
 urlpatterns = [
-
-    url('^get/(?P<id>[-\w]+)/', blog_views.OneArticleViewSet.as_view()),
     url(r'^', include(router.urls)),
-
 ]

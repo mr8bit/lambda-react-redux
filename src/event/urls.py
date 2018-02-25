@@ -15,7 +15,6 @@ urlpatterns = [
         event_views.CategoryViewSet.as_view(),
         name='category_event_list'),
 
-
     url(r'^', include(router.urls)),
 
 ]
