@@ -2,7 +2,10 @@ import fetch from "isomorphic-fetch";
 import {checkHttpStatus, parseJSON} from "../../utils";
 import {receivePosts, requestPosts} from "../Article/index";
 import {SERVER_URL} from "../../utils/config";
-import {REQUEST_EVENTS, RECEIVE_EVENTS, LOAD_MORE_EVENTS, LOAD_FILTERED_EVENTS, REQUEST_EVENTS_CATEGORY, RECEIVE_EVENTS_CATEGORY } from "../../constants";
+import {
+    REQUEST_EVENTS, RECEIVE_EVENTS, LOAD_MORE_EVENTS, LOAD_FILTERED_EVENTS, REQUEST_EVENTS_CATEGORY,
+    RECEIVE_EVENTS_CATEGORY, RECEIVE_EVENT, REQUEST_EVENT
+} from "../../constants";
 
 
 ///////////// EVENT LIST //////////////
@@ -50,7 +53,6 @@ export function  receiveLoadMoreEvents(data) {
 
 
 ///// ПОЛУЧИТЬ СТАТЬЮ ПО ЕЕ ID ////
-
 export function filterEventByCategory(categoryId) {
     console.log(`${SERVER_URL}/api/v1/events/?category=${categoryId}`);
     return dispatch =>{
@@ -76,6 +78,7 @@ export function loadMoreEvents(nextUrl) {
             })
     }
 }
+
 ////// ЗАПРОС НА ПЕРВЫЙ СПИСОК LIST EVENT //////
 export function fetchEvents() {
     return dispatch => {
@@ -88,25 +91,35 @@ export function fetchEvents() {
             })
     }
 }
-///// ПОЛУЧИТЬ СТАТЬЮ ПО ЕЕ ID ////
 
-export function fetchEvent(id) {
-    return dispatch => {
-        dispatch(requestEvents())
-        return fetch(`${SERVER_URL}/api/v1/events/${id}`)
-            .then(checkHttpStatus)
-            .then(parseJSON)
-            .then((response) => {
-                dispatch(receiveEvents(response));
-            })
+
+////// ПОЛУЧИЛИ EVENT   ////////
+export function requestEvent() {
+    return {
+        type: REQUEST_EVENT,
     }
 }
 
+////// ПОЛУЧИЛИ EVENT   ////////
+export function receiveEvent(data) {
+    return {
+        type: RECEIVE_EVENT,
+        results: data
+    }
+}
 
-
-
-
-
+///// ПОЛУЧИТЬ EVENT ПО ID ////
+export function fetchEvent(id) {
+    return dispatch => {
+        dispatch(requestEvent())
+        return fetch(`${SERVER_URL}/api/v1/events/${id}/`)
+            .then(checkHttpStatus)
+            .then(parseJSON)
+            .then((response) => {
+                dispatch(receiveEvent(response));
+            })
+    }
+}
 
 ////////////// CATEGORY ////////////
 export function requestEventsCategory() {

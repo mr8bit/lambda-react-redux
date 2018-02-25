@@ -7,6 +7,8 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
 export default class CardFull extends Component {
     render() {
         const {card} = this.props;
+        const link = `/event/${card.id}`;
+
         return (
             <ReactCSSTransitionGroup
                 transitionName="card"
@@ -29,7 +31,7 @@ export default class CardFull extends Component {
                             </div>
                         </div>
                         <div className="card-body card-body--event--middle">
-                            <a href="#" className="card__link">
+                            <a href={link} className="card__link">
                                 <div className="card-body__title card-body__title--event--big">
                                     {card.title}
                                 </div>
@@ -38,7 +40,7 @@ export default class CardFull extends Component {
 
                         <div className="card-footer card-footer--event--middle">
                     <span>
-                        <a href="#" className="btn btn--gray-30 btn--extra-small ">
+                        <a href={link} className="btn btn--gray-30 btn--extra-small ">
                             Подробнее
                         </a>
                     </span>

@@ -7,7 +7,9 @@ import {
     LOAD_MORE_EVENTS,
     LOAD_FILTERED_EVENTS,
     REQUEST_EVENTS_CATEGORY,
-    RECEIVE_EVENTS_CATEGORY
+    RECEIVE_EVENTS_CATEGORY,
+    RECEIVE_EVENT, REQUEST_EVENT
+
 } from "../../constants";
 
 const initialState = {
@@ -30,6 +32,21 @@ const initialState = {
 
 export default function eventReducer(state = initialState, action) {
     switch (action.type) {
+
+
+        case REQUEST_EVENT:
+            return Object.assign({}, state, {
+                activeEvent: {
+                    isFetching: true,
+                }
+            });
+        case RECEIVE_EVENT:
+            return Object.assign({}, state, {
+                activeEvent: {
+                    isFetching: true,
+                    post: action.results
+                }
+            });
 
         case REQUEST_EVENTS:
             return Object.assign({}, state, {

@@ -7,6 +7,8 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
 export default class CardMiddle extends Component {
     render() {
         const {card} = this.props;
+        const link = `/event/${card.id}`;
+
         return (
             <ReactCSSTransitionGroup
                 transitionName="card"
@@ -15,34 +17,34 @@ export default class CardMiddle extends Component {
                 component="div"
                 transitionEnterTimeout={1000}
                 transitionLeaveTimeout={1000}>
-            <div className="card card--event--middle">
-                <div className="card-head--event--middle">
+                <div className="card card--event--middle">
+                    <div className="card-head--event--middle">
 			<span className="card-head__tag card-head__tag--middle card-head__tag--transparent ">
 				лекции
 			</span>
-                    <img className="card__img card__img--middle" src={card.image}/>
-                </div>
-                <div className="card-footer card-footer--event--middle">
-                    <div className="card-footer__datetime card-footer__datetime--middle">
-                        24 Января 15:40
+                        <img className="card__img card__img--middle" src={card.image}/>
                     </div>
-                </div>
-                <div className="card-body card-body--event--middle">
-                    <a className="card__link" href="#">
-                        <div className="card-body__title card-body__title--event--middle">
-                            {card.title}
+                    <div className="card-footer card-footer--event--middle">
+                        <div className="card-footer__datetime card-footer__datetime--middle">
+                            24 Января 15:40
                         </div>
-                    </a>
-                </div>
-                <div className="card-footer card-footer--event--middle">
+                    </div>
+                    <div className="card-body card-body--event--middle">
+                        <a className="card__link" href={link}>
+                            <div className="card-body__title card-body__title--event--middle">
+                                {card.title}
+                            </div>
+                        </a>
+                    </div>
+                    <div className="card-footer card-footer--event--middle">
             <span>
-                <a href="#" className="card-footer__more">
+                <a href={link} className="card-footer__more">
                 Подробнее
                 </a>
             </span>
 
+                    </div>
                 </div>
-            </div>
 
             </ReactCSSTransitionGroup>
         )
