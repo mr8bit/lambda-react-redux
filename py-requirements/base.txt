@@ -22,3 +22,16 @@ python-dateutil==2.6.1
 git+https://github.com/Seedstars/django-rest-logger.git
 
 django-rest-knox==3.0.3
+
+# for tags support
+django-taggit
+django-taggit-serializer
+
+# color picker
+django-colorfield
+
+# entries editor
+django-ckeditor
+
+# image library
+Pillow
