@@ -28,6 +28,18 @@ class ArticleViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(main, many=False)
         return Response(serializer.data)
 
+    # TODO: request to get line of articles, total size = 100
+    @list_route(methods=['get'])
+    def line(self, request):
+        self.serializer_class = MainArticleSerializer
+        line, total_size = [], 0
+        while total_size < 100:
+            for article in self.queryset:
+                line.append(article)
+                total_size += article.size
+        serializer = self.get_serializer(line, many=True)
+        return Response(serializer.data)
+
     def get_object(self):
         self.serializer_class = ArticleViewSerializer
         id = self.kwargs['id']
