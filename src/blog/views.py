@@ -60,7 +60,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
                 if try_to_fit(article.size, total_size, self.queryset[i:]):
                     line.append(article)
                     total_size += article.size
-                i += 1
+                    i += 1
         serializer = self.get_serializer(line, many=True)
         return Response(serializer.data)
 
