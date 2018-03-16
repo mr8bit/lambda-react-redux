@@ -9,6 +9,54 @@ import datetime
 import locale
 from django.conf import settings
 
+from django.db.models.signals import post_save, post_delete
+
+
+def sort_articles():
+    articles = Article.objects.order_by('-creation_date')
+    page = 1
+    while articles:
+        line1 = get_line(articles)
+        line2 = get_line(articles)
+        for item in line1 + line2:
+            item.page = page
+            item.save['page']
+        page += 1
+
+
+def get_line(articles):
+    small_count = 0
+    for item in articles:
+        if item.size == 25:
+            small_count += 1
+    while size < 100:
+        i = 0
+        l = len(articles)
+        while not fit_into_line(articles[i].size, size, small_count, l):
+            i += 1
+        line.append(articles.pop(i))
+    return line
+
+
+def fit_into_line(article_size, line_size, small_count, count_objects):
+    if article_size + line_size > 100:
+        return False
+    # we should always return true if it's the last article in set
+    if count_objects == 1:
+        return True
+    # we should not fit small article if it's the last one and line size is even
+    if small_count == 1 and article_size == 25 and line_size % 2 == 0:
+        return False
+    if article_size == 25:
+        small_count -= 1
+    return True
+
+
+post_save.connect(sort_articles)
+post_delete.connect(sort_articles)
+# do sorting once on app start
+sort_articles()
+
 
 class Category(models.Model):
     name = models.CharField(max_length=120, verbose_name='Название')
@@ -48,6 +96,7 @@ class Article(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="Автор", null=True, blank=True)
     tags = TaggableManager()
+    page = models.IntegerField(verbose_name='Страница', default=0)
 
     def __str__(self):
         return self.title
