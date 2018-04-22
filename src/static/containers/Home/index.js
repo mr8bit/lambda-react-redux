@@ -5,7 +5,7 @@ import {bindActionCreators} from "redux";
 import "./style.sass";
 import CardList from "../../components/CardList/CardList";
 import EventList from "../../components/CardList/EventList";
-import * as actionCreators from "../../actions/Article/index";
+import * as actionCreators from "../../actions/article";
 import * as actionEvent from "../../actions/event";
 import NavHead from '../../components/Navigation/NavHead'
 import PreloaderIcon, {ICON_TYPE} from 'react-preloader-icon';
@@ -76,7 +76,7 @@ class HomeView extends React.Component {
                 this.props.events.eventCategoryList.results
                     ?
                     <div className="container">
-                        <CardMain card={this.props.posts.mainPost.post} />
+                        <CardMain card={this.props.posts.mainPost.post}/>
                         <CardList list={this.props.posts.postsList.results} loadMore={this.getOtherArticle.bind(this)}/>
                         <NavHead categoryList={this.props.events.eventCategoryList.results}
                                  getEventbyFilter={this.updateEventByFilter.bind(this)}/>

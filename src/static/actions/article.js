@@ -1,10 +1,10 @@
 /**
  * Created by lambada on 09.02.18.
  */
-import {checkHttpStatus, parseJSON} from "../../utils/index";
+import {checkHttpStatus, parseJSON} from "../utils/index";
 import fetch from "isomorphic-fetch";
-import {SERVER_URL} from "../../utils/config";
-import {REQUEST_ARTICLE, RECEIVE_ARTICLE, REQUEST_POSTS, RECEIVE_POSTS, LOAD_NEXT_POSTS,RECEIVE_MAIN} from "../../constants";
+import {SERVER_URL} from "../utils/config";
+import {REQUEST_ARTICLE, RECEIVE_ARTICLE, REQUEST_POSTS, RECEIVE_POSTS, LOAD_NEXT_POSTS,RECEIVE_MAIN} from "../constants/index";
 
 ////// ЗАПРОС НА СТАТЬЮ ////////
 export function requestArticle() {

@@ -3,6 +3,7 @@
  */
 import React, {Component} from "react";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
+import { Link } from 'react-router-dom'
 
 export default class CardMiddle extends Component {
     render() {
@@ -16,7 +17,7 @@ export default class CardMiddle extends Component {
                 transitionEnterTimeout={1000}
                 transitionLeaveTimeout={1000}>
             <div className="card card--middle">
-                <a href={link} className="card__link">
+                <Link to={link} className="card__link">
                     <div className="card-head--middle">
 			            <span className="card-head__tag card-head__tag--middle"
                               style={{backgroundColor: card.categoryName.color}}>
@@ -38,7 +39,7 @@ export default class CardMiddle extends Component {
                             <span className="card-footer__countcomment__number">12</span>
                         </div>
                     </div>
-                </a>
+                </Link>
             </div>
             </ReactCSSTransitionGroup>
         )

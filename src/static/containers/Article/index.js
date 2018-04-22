@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import Article from "./../../components/Article";
-import * as actionArticle from "../../actions/Article";
+import * as actionArticle from "../../actions/article";
 import {bindActionCreators} from "redux";
 import NavBreadcrumb from "./../../components/Navigation/NavBreadcrumb";
 import PreloaderIcon, {ICON_TYPE} from 'react-preloader-icon';

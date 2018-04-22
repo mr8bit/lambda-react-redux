@@ -3,7 +3,7 @@
  */
 import React, {Component} from "react";
 import "./head.sass";
-
+import { Link } from 'react-router-dom'
 export default class NavBreadcrumb extends Component {
     state = {
         active: false
@@ -17,7 +17,7 @@ export default class NavBreadcrumb extends Component {
                 <nav className="navigation-breadcrumb">
                     <ol className="navigation-breadcrumb-list">
                         <li className="navigation-breadcrumb-list__item">
-                            <a className="navigation-breadcrumb-list__item__link" href="/">Главная</a>
+                            <Link className="navigation-breadcrumb-list__item__link" to='/'>Главная</Link>
                         </li>
                         <li className="navigation-breadcrumb-list__item">
                             <a className="navigation-breadcrumb-list__item__link" href="#">{category}</a>

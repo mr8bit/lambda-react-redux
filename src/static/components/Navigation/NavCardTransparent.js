@@ -5,7 +5,7 @@ import React, {Component} from "react";
 import "./head.sass";
 import { Link } from 'react-router-dom'
 
-export default class NavCard extends Component {
+export default class NavCardTransparent extends Component {
     state = {
         active: false
     }
@@ -24,45 +24,46 @@ export default class NavCard extends Component {
         )
 
         return (
-            <nav className="navigation-card">
-                <div className="navigation-card__container   ">
-                    <div className="navigation-card__left">
-                        <div onClick={this.toogleClass.bind(this)} className="navigation-card__sidebar-btn">
+
+            <nav className="navigation-card navigation-card--transparent">
+                 <div className="navigation-card__container   ">
+                     <div className="navigation-card__left">
+
+                        <div onClick={this.toogleClass.bind(this)}
+                            className="navigation-card__sidebar-btn js-toogleSidebar navigation-card__sidebar-btn--transparent">
                             <span className="icon icon-menu"></span>
                         </div>
+
                     </div>
 
-                    <div className="navigation-card__center  ">
-                        <div className="navigation-card__brand">
+                     <div className="navigation-card__center  ">
+                         <div className="navigation-card__brand navigation-card__brand--white">
                             <span className="icon icon-logo "> </span>
                         </div>
                     </div>
 
-                    <div className="navigation-card__right">
+                     <div className="navigation-card__right    ">
                         <ul className="navigation-card-social__list">
                             <li className="navigation-card-social__item">
-                                <a className="navigation-card-social__link" href="#">
+                                <a className="navigation-card-social__link navigation-card-social__link--white" href="#">
                                     <span className="navigation-card-social__icon icon icon-twitter"></span>
                                 </a>
                             </li>
                             <li className="navigation-card-social__item">
-                                <a className="navigation-card-social__link" href="#">
+                                <a className="navigation-card-social__link navigation-card-social__link--white" href="#">
                                     <span className="navigation-card-social__icon icon icon-instagram"></span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div
-                    className={ this.state.active ? "navigation-card-sidebar navigation-card-sidebar__view" : "navigation-card-sidebar" }>
-
+                <div className={ this.state.active ? "navigation-card-sidebar navigation-card-sidebar__view" : "navigation-card-sidebar" }>
                     <ul className="navigation-card-sidebar__list">
                         {menuList}
                     </ul>
                 </div>
-
-
             </nav>
+
         )
     }
 

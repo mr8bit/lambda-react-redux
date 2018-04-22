@@ -3,6 +3,7 @@
  */
 import React, {Component} from "react";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
+import { Link } from 'react-router-dom'
 
 export default class CardMiddle extends Component {
     render() {
@@ -30,17 +31,17 @@ export default class CardMiddle extends Component {
                         </div>
                     </div>
                     <div className="card-body card-body--event--middle">
-                        <a className="card__link" href={link}>
+                        <Link className="card__link" to={link}>
                             <div className="card-body__title card-body__title--event--middle">
                                 {card.title}
                             </div>
-                        </a>
+                        </Link>
                     </div>
                     <div className="card-footer card-footer--event--middle">
             <span>
-                <a href={link} className="card-footer__more">
+                <Link to={link} className="card-footer__more">
                 Подробнее
-                </a>
+                </Link>
             </span>
 
                     </div>

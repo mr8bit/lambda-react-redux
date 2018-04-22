@@ -3,6 +3,7 @@
  */
 import React, {Component} from "react";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
+import { Link } from 'react-router-dom'
 
 export default class CardMain extends Component {
     render() {
@@ -18,9 +19,9 @@ export default class CardMain extends Component {
                 transitionLeaveTimeout={1000}>
                 <div className="card card--main">
                     <div className="card-content card-content--main">
-                        <a href={link} className="card__link">
+                        <Link to={`/post/${card.id}`} className="card__link">
                             <img src={card.image} className="img-responsive"/>
-                        </a>
+                        </Link>
                     </div>
                     <div className="card-content card-content--main">
                         <div className="card-head--main ">
@@ -29,11 +30,11 @@ export default class CardMain extends Component {
                                 {card.categoryName.name} </span>
                         </div>
                         <div className="card-body">
-                            <a href={link} className="card__link">
+                            <Link to={`/post/${card.id}`}className="card__link">
                                 <div className="card-body__title card-body__title--main">
                                     {card.title}
                                 </div>
-                            </a>
+                            </Link>
                             <div className="card-body__description">
                                 {card.short_description}
                             </div>

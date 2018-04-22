@@ -3,6 +3,7 @@
  */
 import React, {Component} from "react";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
+import { Link } from 'react-router-dom'
 
 export default class CardBig extends Component {
     render() {
@@ -16,7 +17,7 @@ export default class CardBig extends Component {
                 transitionEnterTimeout={1000}
                 transitionLeaveTimeout={1000}>
                 <div className="card card--big" style={{backgroundImage: `url(${card.image})`}}>
-                    <a href={link} className="card__link">
+                    <Link to={link} className="card__link">
                         <div className="card-content">
                             <div className="card-head--big">
                                 <span className="card-head__tag card-head__tag--big "
@@ -42,7 +43,7 @@ export default class CardBig extends Component {
                                 </div>
                             </div>
                         </div>
-                    </a>
+                    </Link>
                 </div>
             </ReactCSSTransitionGroup>
         )

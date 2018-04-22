@@ -1,11 +1,11 @@
 import fetch from "isomorphic-fetch";
-import {checkHttpStatus, parseJSON} from "../../utils";
-import {receivePosts, requestPosts} from "../Article/index";
-import {SERVER_URL} from "../../utils/config";
+import {checkHttpStatus, parseJSON} from "../utils/index";
+import {receivePosts, requestPosts} from "./article";
+import {SERVER_URL} from "../utils/config";
 import {
     REQUEST_EVENTS, RECEIVE_EVENTS, LOAD_MORE_EVENTS, LOAD_FILTERED_EVENTS, REQUEST_EVENTS_CATEGORY,
     RECEIVE_EVENTS_CATEGORY, RECEIVE_EVENT, REQUEST_EVENT
-} from "../../constants";
+} from "../constants/index";
 
 
 ///////////// EVENT LIST //////////////

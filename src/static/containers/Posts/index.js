@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {bindActionCreators} from "redux";
 import CardList from "../../components/CardList/CardList";
-import * as actionCreators from "../../actions/Article/index";
+import * as actionCreators from "../../actions/article";
 import PreloaderIcon, {ICON_TYPE} from 'react-preloader-icon';
 
 class PostsView extends React.Component {

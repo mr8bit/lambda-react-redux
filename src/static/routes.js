@@ -1,17 +1,29 @@
 import React from 'react';
-import {Route, Switch} from 'react-router';
-import {HomeView, LoginView, ProtectedView, NotFoundView, ArticleView, EventView, PostsView, EventsView} from './containers';
-import requireAuthentication from './utils/requireAuthentication';
+import {BrowserRouter as Router, Route, Link, Match, Redirect, Switch} from 'react-router-dom'
+import {
+    HomeView,
+    LoginView,
+    ProtectedView,
+    NotFoundView,
+    ArticleView,
+    EventView,
+    PostsView,
+    EventsView,
+    AboutView
+} from './containers';
+import {DefaultRoute} from './components/Layout/Default'
+import {TransparentRoute} from './components/Layout/Transparent'
+
 
 export default (
     <Switch>
-        <Route exact path="/" component={HomeView}/>
-        <Route path='/post/:slug' component={ArticleView}/>
-        <Route path='/posts' component={PostsView}/>
-        <Route path='/events' component={EventsView}/>
-        <Route path='/event/:slug' component={EventView}/>
-        <Route path="/login" component={LoginView}/>
-        <Route path="/protected" component={requireAuthentication(ProtectedView)}/>
-        <Route path="*" component={NotFoundView}/>
+        <DefaultRoute exact path="/" component={HomeView}/>
+        <DefaultRoute path='/events' component={EventsView}/>
+        <DefaultRoute path='/event/:slug' component={EventView}/>
+        <DefaultRoute path='/login' component={LoginView}/>
+        <DefaultRoute path='/posts' component={PostsView}/>
+        <DefaultRoute path='/post/:slug' component={ArticleView}/>
+
+        <TransparentRoute path='/about' component={AboutView} />
     </Switch>
 );
