@@ -63,7 +63,6 @@ export function loadMorePosts(data) {
 //////ЗАПРОС НА СТАТЬИ  НА СТРАНИЦЕ ПО URL //////
 export function fetchNextArticles(nextUrl) {
     return dispatch => {
-        dispatch(requestPosts())
         return fetch(nextUrl)
             .then(checkHttpStatus)
             .then(parseJSON)
@@ -72,11 +71,25 @@ export function fetchNextArticles(nextUrl) {
             })
     }
 }
+////// ЗАПРОС НА СПИСОК ВСЕХ СТАТЕЙ //////
+export function fetchAllArticles() {
+    return dispatch => {
+        dispatch(requestPosts())
+        return fetch(`${SERVER_URL}/api/v1/article/all/`)
+            .then(checkHttpStatus)
+            .then(parseJSON)
+            .then((response) => {
+                dispatch(receivePosts(response));
+            })
+    }
+}
+
+
 ////// ЗАПРОС НА ПЕРВЫЙ СПИСОК СТАТЕЙ //////
 export function fetchArticles() {
     return dispatch => {
         dispatch(requestPosts())
-        return fetch(`${SERVER_URL}/api/v1/article/`)
+        return fetch(`${SERVER_URL}/api/v1/article/list/`)
             .then(checkHttpStatus)
             .then(parseJSON)
             .then((response) => {
@@ -89,7 +102,7 @@ export function fetchArticles() {
 export function fetchArticle(id) {
     return dispatch => {
         dispatch(requestArticle())
-        return fetch(`${SERVER_URL}/api/v1/article/${id}/`)
+        return fetch(`${SERVER_URL}/api/v1/article/list/${id}/`)
             .then(checkHttpStatus)
             .then(parseJSON)
             .then((response) => {
@@ -103,7 +116,7 @@ export function fetchArticle(id) {
 export function fetchMainArticle() {
     return dispatch => {
         dispatch(requestArticle())
-        return fetch(`${SERVER_URL}/api/v1/article/main/`)
+        return fetch(`${SERVER_URL}/api/v1/article/list/main/`)
             .then(checkHttpStatus)
             .then(parseJSON)
             .then((response) => {

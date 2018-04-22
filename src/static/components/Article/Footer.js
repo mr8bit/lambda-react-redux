@@ -17,12 +17,7 @@ export default class Footer extends React.Component {
                         </div>
                     </div>
                     <div className="article-footer-about_article">
-                        <div className="article-footer-about_article__item">
-                            <a className="article-footer-about_article__link" href="#">
-                                <span className="icon icon-faovrite-solid"></span>
-                            </a>
-                            <span className="article-footer-about_article__num">122</span>
-                        </div>
+
                         <div className="article-footer-about_article__item">
                             <span className="article-footer-about_article__icon icon icon-eye"></span>
                             <span className="article-footer-about_article__num">122</span>
@@ -39,9 +34,10 @@ export default class Footer extends React.Component {
                 <div className="article-footer__bottom">
                     <div className="article-footer-tags">
                         {
-                            tags.map((item,index) => {
+                            tags.map((item, index) => {
                                 return (
-                                    <a key={index} href="#" className="article-footer-tags__link label label--default">{item}</a>
+                                    <a key={index} href="#"
+                                       className="article-footer-tags__link label label--default">{item}</a>
                                 )
                             })
                         }
@@ -69,3 +65,12 @@ export default class Footer extends React.Component {
         )
     }
 }
+
+/* <div className="article-footer-about_article__item">
+                            <a className="article-footer-about_article__link" href="#">
+                                <span className="icon icon-faovrite-solid"></span>
+                            </a>
+                            <span className="article-footer-about_article__num">122</span>
+                        </div>
+
+                    */

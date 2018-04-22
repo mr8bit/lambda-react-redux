@@ -4,3 +4,5 @@ export ProtectedView from './Protected/index';
 export NotFoundView from './NotFound/index';
 export ArticleView from './Article/index'
 export EventView from './Event/index'
+export PostsView from './Posts/index'
+export EventsView from './Events/index'

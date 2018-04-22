@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from blog.models import Article
-from blog.serializers import ArticleSerializer, ArticleViewSerializer,MainArticleSerializer
+from blog.serializers import ArticleSerializer, ArticleViewSerializer, MainArticleSerializer
 from rest_framework import generics, viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import list_route
@@ -36,6 +36,20 @@ class ArticleViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         tags = self.request.query_params.get('tags', None)
         if tags:
-            print(tags)
             return self.queryset.filter(tags__name__in=[tags])
         return self.queryset.all().exclude(type='main')
+
+
+class AllArticleViewSet(viewsets.ModelViewSet):
+    pagination_class = ExamplePagination
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
+    lookup_field = 'id'
+
+    def get_queryset(self):
+        return self.queryset.all()
+
+    def get_object(self):
+        self.serializer_class = ArticleViewSerializer
+        id = self.kwargs['id']
+        return self.queryset.get(id=id)

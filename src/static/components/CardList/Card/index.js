@@ -5,6 +5,7 @@ import React, {Component} from "react";
 import "./card.sass";
 import CardMiddle from './middle'
 import CardBig from './big'
+import CardMain from "./Main";
 
 export default class Card extends Component {
     render() {
@@ -14,7 +15,7 @@ export default class Card extends Component {
             render_card = <CardMiddle card={card}/>
         }
         else {
-            if (card.type === 'big') {
+            if (card.type === 'big' | card.type === 'main') {
                 render_card = <CardBig card={card}/>
             }
         }

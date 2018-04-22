@@ -31,7 +31,8 @@ export default function postsReducer(state = initialState, action) {
             return Object.assign({}, state, {
                 postsList: {
                     isFetching: true,
-                    results: state.postsList.results
+                    results: state.postsList.results,
+                    done: false
                 }
             });
 
@@ -44,6 +45,7 @@ export default function postsReducer(state = initialState, action) {
                     next: action.next,
                     previous: action.previous,
                     isFetching: false,
+                    done: true
                 }
             });
 
@@ -64,6 +66,7 @@ export default function postsReducer(state = initialState, action) {
                     next: action.next,
                     previous: action.previous,
                     isFetching: false,
+                    done: true
                 }
             });
 
@@ -72,7 +75,8 @@ export default function postsReducer(state = initialState, action) {
             return Object.assign({}, state, {
                 activePost: {
                     post: null,
-                    isFetching: true
+                    isFetching: true,
+                    done: false
                 }
             });
 
@@ -82,6 +86,7 @@ export default function postsReducer(state = initialState, action) {
                 activePost: {
                     post: action.results,
                     isFetching: false
+
                 }
             });
 

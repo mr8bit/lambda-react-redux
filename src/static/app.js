@@ -63,7 +63,13 @@ class App extends React.Component {
             {
                 name: 'Главная',
                 link: '/'
-            }, {
+            },{
+                name: 'Публикации',
+                link: '/posts'
+            },{
+                name: 'Мероприятия',
+                link: '/events'
+            },{
                 name: 'Войти',
                 link: '/login'
             }, {
@@ -71,7 +77,6 @@ class App extends React.Component {
                 link: '/protected'
             },
         ]
-        console.log('hello from App', this.props.location)
         return (
             <div className="app">
                 <NavCard links={links}/>
