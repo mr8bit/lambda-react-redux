@@ -84,6 +84,8 @@ def get_line(articles):
     for item in articles:
         if item.size == 25:
             small_count += 1
+    size = 0
+    line = []
     while size < 100:
         i = 0
         l = len(articles)
