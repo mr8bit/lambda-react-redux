@@ -21,7 +21,8 @@ def try_to_fit(size, total, articles):
         return True
     elif len(articles) == 1:
         return True
-    else return False
+    else:
+        return False
 
 def search_small(articles):
     count = 0

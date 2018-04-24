@@ -26,6 +26,7 @@ INSTALLED_APPS = (
 
     # Article app
     'ckeditor',
+    'accounts',
     'blog',
 
     # Event app
@@ -37,7 +38,6 @@ INSTALLED_APPS = (
     'taggit_serializer',
     'django_extensions',
 
-    'accounts',
     'base',
 )
 
