@@ -91,6 +91,7 @@ def get_line(articles):
         l = len(articles)
         while not fit_into_line(articles[i].size, size, small_count, l):
             i += 1
+        size += articles[i].size
         line.append(articles.pop(i))
     return line
 
