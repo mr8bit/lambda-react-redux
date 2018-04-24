@@ -71,8 +71,8 @@ def sort_articles(**kwargs):
     articles = Article.objects.order_by('-creation_date')
     page = 1
     while articles:
-        line1 = get_line(articles)
-        line2 = get_line(articles)
+        line1 = get_line(list(articles))
+        line2 = get_line(list(articles))
         for item in line1 + line2:
             item.page = page
             item.save['page']
