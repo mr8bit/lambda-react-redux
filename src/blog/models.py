@@ -8,6 +8,7 @@ from colorfield.fields import ColorField
 import datetime
 import locale
 from django.conf import settings
+from django.db.models.signals import post_save, post_delete
 
 
 class Category(models.Model):
@@ -48,12 +49,14 @@ class Article(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="Автор", null=True, blank=True)
     tags = TaggableManager()
+    page = models.IntegerField(verbose_name='Страница', default=0)
 
     def __str__(self):
         return self.title
 
     class Meta:
         verbose_name = "Статья"
+        ordering = ['-creation_date']
 
     def getCategory(self):
         return {
@@ -64,3 +67,56 @@ class Article(models.Model):
     def getDateCreate(self):
         locale.setlocale(locale.LC_ALL, 'ru_RU.UTF-8')
         return self.creation_date.strftime("%d %b %H:%M")
+
+
+def sort_articles(instance, sender, **kwargs):
+    articles = Article.objects.order_by('-creation_date')
+    page = 1
+    if kwargs['created']:
+        size_all_articel = len(articles)
+        if len(articles) > 4:
+            while size_all_articel>0:
+                genarator = list(articles)
+                line1 = get_line(genarator)
+                line2 = get_line(genarator)
+                for item in line1 + line2:
+                    item.page = page
+                    item.save()
+                page += 1
+                print(size_all_articel)
+                size_all_articel -= len(line1 + line2)
+
+def get_line(articles):
+    small_count = 0
+    for item in articles:
+        if item.size == 25:
+            small_count += 1
+    size = 0
+    line = []
+    while size < 100:
+        i = 0
+        l = len(articles)
+        while not fit_into_line(articles[i].size, size, small_count, l):
+            i += 1
+        size += articles[i].size
+        line.append(articles.pop(i))
+    print(line)
+    return line
+
+
+def fit_into_line(article_size, line_size, small_count, count_objects):
+    if article_size + line_size > 100:
+        return False
+    # we should always return true if it's the last article in set
+    if count_objects == 1:
+        return True
+    # we should not fit small article if it's the last one and line size is even
+    if small_count == 1 and article_size == 25 and line_size % 2 == 0:
+        return False
+    if article_size == 25:
+        small_count -= 1
+    return True
+
+
+post_save.connect(sort_articles, sender=Article)
+post_delete.connect(sort_articles, sender=Article)

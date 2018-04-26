@@ -14,6 +14,7 @@ ALLOWED_HOSTS = ['localhost']
 # Application definition
 
 INSTALLED_APPS = (
+    'accounts',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.staticfiles',
@@ -37,7 +38,6 @@ INSTALLED_APPS = (
     'taggit_serializer',
     'django_extensions',
 
-    'accounts',
     'base',
 )
 
@@ -107,8 +107,6 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 5,
     'DEFAULT_PARSER_CLASSES': (
         'rest_framework.parsers.JSONParser',
         'rest_framework.parsers.FormParser',
