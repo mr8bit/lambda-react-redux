@@ -50,6 +50,8 @@ class Article(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="Автор", null=True, blank=True)
     tags = TaggableManager()
     page = models.IntegerField(verbose_name='Страница', default=0)
+    line_num = models.IntegerField(verbose_name='Линия размещения', default=0)
+    order_in_line = models.IntegerField(verbose_name='Порядок в линии', default=0)
 
     def __str__(self):
         return self.title
@@ -73,9 +75,22 @@ def sort_articles(**kwargs):
     while articles:
         line1 = get_line(list(articles))
         line2 = get_line(list(articles))
-        for item in line1 + line2:
+        i = 0
+        for item in line1:
+            item.line_num = 0
+            item.order_in_line = i
+            item.save['order_in_line']
             item.page = page
             item.save['page']
+            i += 1
+        i = 0
+        for item in line2:
+            item.line_num = 1
+            item.order_in_line = i
+            item.save['order_in_line']
+            item.page = page
+            item.save['page']
+            i += 1
         page += 1
 
 
@@ -86,7 +101,7 @@ def get_line(articles):
             small_count += 1
     size = 0
     line = []
-    while size < 100:
+    while size < 100 and len(articles) > 0:
         i = 0
         l = len(articles)
         while not fit_into_line(articles[i].size, size, small_count, l):
