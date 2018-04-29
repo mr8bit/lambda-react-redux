@@ -16,7 +16,7 @@ export default class CardBig extends Component {
                 component="div"
                 transitionEnterTimeout={1000}
                 transitionLeaveTimeout={1000}>
-                <div className="card card--big" style={{backgroundImage: `url(${card.image})`}}>
+                <div className="card card--big" style={{backgroundImage: `url(${card.thumbnail})`}}>
                     <Link to={link} className="card__link">
                         <div className="card-content">
                             <div className="card-head--big">

@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^api/v1/article/', include('blog.urls', namespace='blog')),
     url(r'^api/v1/events/', include('event.urls', namespace='event')),
     url(r'^api/v1/getdata/', include('base.urls', namespace='base')),
+    url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
     url(r'^admin/', admin.site.urls),
 
     # catch all others because of how history is handled by react router - cache this page because it will never change

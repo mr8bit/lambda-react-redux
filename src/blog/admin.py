@@ -6,6 +6,16 @@ from .models import *
 
 # Register your models here.
 
-admin.site.register(Article)
 admin.site.register(Category)
 
+
+class ArticleAdmin(admin.ModelAdmin):
+    model = Article
+    prepopulated_fields = {'slug': ('title',)}
+    fieldsets = (
+        ('Основное', {'fields': ('title', 'category', 'type', 'slug', 'image', 'author', 'tags')}),
+        ('Описание', {'fields': ('description', 'short_description')}),
+    )
+
+
+admin.site.register(Article, ArticleAdmin)

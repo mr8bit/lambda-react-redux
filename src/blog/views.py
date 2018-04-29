@@ -16,6 +16,7 @@ class ExamplePagination(pagination.PageNumberPagination):
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
+    pagination_class = ExamplePagination
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
     lookup_field = 'id'

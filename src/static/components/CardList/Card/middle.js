@@ -23,7 +23,7 @@ export default class CardMiddle extends Component {
                               style={{backgroundColor: card.categoryName.color}}>
                             {card.categoryName.name}
 			            </span>
-                        <img className="card__img card__img--middle" src={card.image}/>
+                        <img className="card__img card__img--middle" src={card.thumbnail}/>
                     </div>
                     <div className="card-body card-body--middle">
                         <div className="card-body__title card-body__title--middle">

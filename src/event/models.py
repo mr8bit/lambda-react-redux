@@ -29,12 +29,18 @@ INTERNET_CHOICES = (
     ("Нет", "Нет"),
 )
 
+from django.template.defaultfilters import slugify
+
 
 class Event(models.Model):
+    def get_file_path(instance, filename):
+        name_slug = slugify(instance.title)
+        return '{0}/{1}/{2}.jpg'.format('event', name_slug, filename)
+
     title = models.CharField(max_length=255, verbose_name='Название')
     type = models.CharField(max_length=3, verbose_name='Тип')
     creation_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-    image = models.ImageField(verbose_name='Изображение', default='')
+    image = models.ImageField(verbose_name='Изображение', default='', upload_to=get_file_path)
     category = models.ForeignKey(Category, verbose_name="Категория", default=1)
     internet_available = models.CharField(choices=INTERNET_CHOICES, max_length=300,
                                           verbose_name="Есть доступ к интернету", default=True)
