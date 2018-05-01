@@ -42,7 +42,7 @@ export function requestPosts() {
 export function receivePosts(data) {
     return {
         type: RECEIVE_POSTS,
-        results: data.results,
+        results: data,
         count: data.count,
         next: data.next,
         previous: data.previous,
@@ -53,7 +53,7 @@ export function receivePosts(data) {
 export function loadMorePosts(data) {
     return {
         type: LOAD_NEXT_POSTS,
-        results: data.results,
+        results: data,
         count: data.count,
         next: data.next,
         previous: data.previous,
@@ -61,9 +61,9 @@ export function loadMorePosts(data) {
 }
 
 //////ЗАПРОС НА СТАТЬИ  НА СТРАНИЦЕ ПО URL //////
-export function fetchNextArticles(nextUrl) {
+export function fetchNextArticles(page) {
     return dispatch => {
-        return fetch(nextUrl)
+        return fetch(`${SERVER_URL}/api/v1/article/list/?pages=${page}`)
             .then(checkHttpStatus)
             .then(parseJSON)
             .then((response) => {
@@ -89,7 +89,7 @@ export function fetchAllArticles() {
 export function fetchArticles() {
     return dispatch => {
         dispatch(requestPosts())
-        return fetch(`${SERVER_URL}/api/v1/article/list/`)
+        return fetch(`${SERVER_URL}/api/v1/article/list/?pages=1`)
             .then(checkHttpStatus)
             .then(parseJSON)
             .then((response) => {

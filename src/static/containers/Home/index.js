@@ -31,7 +31,9 @@ class HomeView extends React.Component {
         })
 
     };
-
+    state = {
+        page: 2
+    }
     static defaultProps = {
         results: [],
         count: 0,
@@ -46,11 +48,10 @@ class HomeView extends React.Component {
     }
 
     getOtherArticle() {
-        console.log('get more', this.props.posts.postsList.next);
-        if (this.props.posts.postsList.next) {
-            var data = this.props.actionsPosts.fetchNextArticles(this.props.posts.postsList.next);
-            console.log(data)
-        }
+        console.log('PRE PAGE', this.state.page);
+        var data = this.props.actionsPosts.fetchNextArticles(this.state.page);
+        this.setState({page: this.state.page + 1});
+        console.log('POSTR PAGE', this.state.page);
     }
 
     updateEventByFilter(categoryId) {

@@ -68,8 +68,9 @@ class MyUserManager(BaseUserManager):
 
 
 class SocialNetwork(models.Model):
-    name = models.CharField(_("Название"),max_length=300)
+    name = models.CharField(_("Название"), max_length=300)
     url = models.URLField(_("Ссылка"), max_length=200)
+
 
 class User(AbstractBaseUser):
     """
@@ -87,7 +88,7 @@ class User(AbstractBaseUser):
 
     # we want primary key to be called id so need to ignore pytlint
     # В чем фича данного поля?
-    #id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)  # pylint: disable=invalid-name
+    # id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)  # pylint: disable=invalid-name
     social_nework = models.ManyToManyField(SocialNetwork)
     first_name = models.CharField(_('Имя'), max_length=50)
     last_name = models.CharField(_('Фамилия'), max_length=50)
@@ -96,12 +97,9 @@ class User(AbstractBaseUser):
 
     image = models.ImageField(_("Фотография"), default='')
 
-
-
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default=GENDER_MALE)
 
     confirmed_email = models.BooleanField(default=False)
-
 
     is_staff = models.BooleanField(_('staff status'), default=False)
     is_superuser = models.BooleanField(_('superuser status'), default=False)

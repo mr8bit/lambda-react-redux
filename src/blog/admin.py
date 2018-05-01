@@ -13,7 +13,7 @@ class ArticleAdmin(admin.ModelAdmin):
     model = Article
     prepopulated_fields = {'slug': ('title',)}
     fieldsets = (
-        ('Основное', {'fields': ('title', 'category', 'type', 'slug', 'image', 'author', 'tags')}),
+        ('Основное', {'fields': ('title', 'size','category', 'type', 'slug', 'image', 'author', 'tags')}),
         ('Описание', {'fields': ('description', 'short_description')}),
     )
 

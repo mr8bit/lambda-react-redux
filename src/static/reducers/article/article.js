@@ -28,6 +28,7 @@ export default function postsReducer(state = initialState, action) {
     switch (action.type) {
 
         case REQUEST_POSTS:
+                        console.log('LOAD_NEXt_POST', state.postsList.results)
             return Object.assign({}, state, {
                 postsList: {
                     isFetching: true,

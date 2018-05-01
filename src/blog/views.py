@@ -16,7 +16,6 @@ class ExamplePagination(pagination.PageNumberPagination):
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
-    pagination_class = ExamplePagination
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
     lookup_field = 'id'
@@ -34,10 +33,14 @@ class ArticleViewSet(viewsets.ModelViewSet):
         return self.queryset.get(id=id)
 
     def get_queryset(self):
+        main = self.queryset.filter(type='main').first()
         tags = self.request.query_params.get('tags', None)
         if tags:
-            return self.queryset.filter(tags__name__in=[tags])
-        return self.queryset.all().exclude(type='main')
+            return self.queryset.filter(tags__name__in=[tags]).exclude(id=main.id).order_by('line_num')
+        pages = self.request.query_params.get('pages', None)
+        if pages:
+            return self.queryset.filter(page=pages).exclude(id=main.id).order_by('line_num')
+        return self.queryset.all().exclude(id=main.id)
 
 
 class AllArticleViewSet(viewsets.ModelViewSet):
