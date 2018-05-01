@@ -49,14 +49,6 @@ class App extends React.Component {
 
     }
 
-    componentDidMount() {
-        setTimeout(function () {
-            this.setState({preloadEnd: true});
-        }.bind(this), 1000)
-        console.log('componentDidMount from App', this.props.location)
-
-    }
-
     render() {
 
        

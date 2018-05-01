@@ -39,7 +39,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
             return self.queryset.filter(tags__name__in=[tags]).exclude(id=main.id).order_by('line_num')
         pages = self.request.query_params.get('pages', None)
         if pages:
-            return self.queryset.filter(page=pages).exclude(id=main.id).order_by('line_num')
+            return self.queryset.filter(page=pages).exclude(id=main.id).order_by('line_num','order_in_line')
         return self.queryset.all().exclude(id=main.id)
 
 

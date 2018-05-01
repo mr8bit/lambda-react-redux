@@ -24,7 +24,7 @@ class ArticleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Article
-        fields = ('id', 'title', 'size','line_num', 'slug','thumbnail', 'image', 'categoryName', 'dateCreate', 'type', 'author','page')
+        fields = ('id', 'title', 'size','line_num', 'order_in_line','slug','thumbnail', 'image', 'categoryName', 'dateCreate', 'type', 'author','page')
 
 
 class ArticleViewSerializer(TaggitSerializer, serializers.ModelSerializer):
