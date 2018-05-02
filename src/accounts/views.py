@@ -10,8 +10,10 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from accounts.models import User
-from accounts.serializers import UserRegistrationSerializer, UserSerializer
+from accounts.serializers import UserRegistrationSerializer, UserSerializer, TeamMateSerializer
 from lib.utils import AtomicMixin
+
+from rest_framework import viewsets
 
 
 class UserRegisterView(AtomicMixin, CreateModelMixin, GenericAPIView):
@@ -65,3 +67,11 @@ class UserEmailConfirmationStatusView(GenericAPIView):
         """Retrieve user current confirmed_email status."""
         user = self.request.user
         return Response({'status': user.confirmed_email}, status=status.HTTP_200_OK)
+
+
+class TeamMateViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = TeamMateSerializer
+
+    def get_queryset(self):
+        return self.queryset.all()

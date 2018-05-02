@@ -1,7 +1,11 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.utils.translation import ugettext_lazy as _
 
 import accounts.views
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'team', accounts.views.TeamMateViewSet)
 
 urlpatterns = [
     url(_(r'^register/$'),
@@ -16,5 +20,6 @@ urlpatterns = [
     url(_(r'^status/email/$'),
         accounts.views.UserEmailConfirmationStatusView.as_view(),
         name='status'),
+    url(r'^', include(router.urls)),
 
 ]

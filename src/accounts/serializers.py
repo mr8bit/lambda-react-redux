@@ -1,16 +1,27 @@
 from rest_framework import serializers
 
-from accounts.models import User
+from accounts.models import User, SocialNetwork
 from lib.utils import validate_email as email_is_valid
 
 
+class SocialNetworksSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SocialNetwork
+        fields = ('name', 'url')
 
 
+class TeamMateSerializer(serializers.ModelSerializer):
+    social_networks = SocialNetworksSerializer(many=True, read_only=True)
 
-
-
-
-
+    class Meta:
+        model = User
+        fields = ('email',
+                  'first_name',
+                  'last_name',
+                  'position',
+                  'image',
+                  'social_networks'
+                  )
 
 
 class UserSerializer(serializers.ModelSerializer):

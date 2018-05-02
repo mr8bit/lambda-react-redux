@@ -67,11 +67,6 @@ class MyUserManager(BaseUserManager):
                                  **extra_fields)
 
 
-class SocialNetwork(models.Model):
-    name = models.CharField(_("Название"), max_length=300)
-    url = models.URLField(_("Ссылка"), max_length=200)
-
-
 class User(AbstractBaseUser):
     """
     Model that represents an user.
@@ -89,7 +84,6 @@ class User(AbstractBaseUser):
     # we want primary key to be called id so need to ignore pytlint
     # В чем фича данного поля?
     # id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)  # pylint: disable=invalid-name
-    social_nework = models.ManyToManyField(SocialNetwork)
     first_name = models.CharField(_('Имя'), max_length=50)
     last_name = models.CharField(_('Фамилия'), max_length=50)
     email = models.EmailField(_('Почта'), unique=True)
@@ -163,3 +157,20 @@ class User(AbstractBaseUser):
             self.save()
             return True
         return False
+
+
+SOCIAL_CHOICES = (
+    ('icon icon-github', "GitHub"),
+    ('icon icon-vk', "Вконтакте"),
+    ('icon icon-instagram', "Instagram"),
+    ('icon icon-twitter', "Twitter"),
+)
+
+
+class SocialNetwork(models.Model):
+    name = models.CharField(_("Название"), max_length=300, choices=SOCIAL_CHOICES)
+    url = models.URLField(_("Ссылка"), max_length=200)
+    user = models.ForeignKey(User, default=0, related_name='social_networks')
+
+    def __str__(self):
+        return self.url

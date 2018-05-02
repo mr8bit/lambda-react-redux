@@ -43,10 +43,7 @@ export default class CardMain extends Component {
                             <div className="card-footer__datetime card-footer__datetime--main">
                                 {card.dateCreate}
                             </div>
-                            <div className="card-footer__countcomment card-footer__countcomment--main">
-                                <span className="card-footer__icon  icon icon-comment"></span>
-                                <span className="card-footer__countcomment__number">12</span>
-                            </div>
+
                         </div>
                     </div>
                 </div>

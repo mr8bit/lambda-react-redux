@@ -33,11 +33,7 @@ export default class CardBig extends Component {
                                 <div className="card-footer__datetime card-footer__datetime--big">
                                     {card.dateCreate}
                                 </div>
-                                <div className="card-footer__countcomment card-footer__countcomment--big">
-                                    <span
-                                        className="card-footer__icon card-footer__icon--white icon icon-comment"></span>
-                                    <span className="card-footer__countcomment__number">12</span>
-                                </div>
+
                                 <div className="card-footer__author">
                                     {card.author.name}
                                 </div>

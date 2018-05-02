@@ -2,30 +2,31 @@ import React from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import Article from "./../../components/Article";
-import * as actionArticle from "../../actions/article";
+import * as actionTeam from "../../actions/team";
 import {bindActionCreators} from "redux";
 import NavBreadcrumb from "./../../components/Navigation/NavBreadcrumb";
 import PreloaderIcon, {ICON_TYPE} from 'react-preloader-icon';
 import BigHeadTitle from '../../components/Head/BigHeadTitle'
 import about_bg from "./about_bg.png";
 import HeadOnHead from '../../components/Head/HeadOnHead'
+import ListTeam from '../../components/Team/ListTeam'
 class AboutView extends React.Component {
 
     static propTypes = {
         results: PropTypes.array,
-        actionUsers: PropTypes.shape({
-            fetchArticle: PropTypes.func.isRequired,
-        }).isRequired,
+        actionTeam: PropTypes.shape({
+            fetchTeam: PropTypes.func,
+        }),
     };
 
     componentDidMount() {
-        this.props.actionArticle.fetchArticle(this.props.slug);
+        this.props.actionTeam.fetchTeam();
     }
 
     render() {
         const HeadOnTitle = "Лучшие нашей <span style='font-weight:bold;'>Команды</span>"
         return (
-            <div>
+            <div >
                 <BigHeadTitle title={"О нас"} image={about_bg}/>
                 <div className="panel panel--big panel--small">
                     <div className="panel__10 panel__about">
@@ -44,7 +45,7 @@ class AboutView extends React.Component {
                     </div>
                 </div>
                 <HeadOnHead title={HeadOnTitle} back_title={"Наша команда"}/>
-
+                <ListTeam list={this.props.team.results} />
 
 
 
@@ -55,14 +56,12 @@ class AboutView extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        ...state.resource,
-        slug: ownProps.match.params.slug,
-        posts: state.posts,
+        team: state.team,
     }
 };
 const mapDispatchToProps = (dispatch) => {
     return {
-        actionArticle: bindActionCreators(actionArticle, dispatch),
+        actionTeam: bindActionCreators(actionTeam, dispatch),
     };
 };
 

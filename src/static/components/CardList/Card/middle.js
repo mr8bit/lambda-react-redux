@@ -34,10 +34,7 @@ export default class CardMiddle extends Component {
                         <div className="card-footer__datetime card-footer__datetime--middle">
                             {card.dateCreate}
                         </div>
-                        <div className="card-footer__countcomment card-footer__countcomment--middle">
-                            <span className="card-footer__icon  icon icon-comment"></span>
-                            <span className="card-footer__countcomment__number">12</span>
-                        </div>
+
                     </div>
                 </Link>
             </div>
