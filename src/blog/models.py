@@ -101,6 +101,10 @@ def resize_image(image_path):
     image = image.resize((image_size_width, image_size_heigth), Image.ANTIALIAS)
     save_image_path = '{0}_main.jpg'.format(image_path.split('.')[0])
     image.save(save_image_path, optimize=True, quality=90)
+    image_hash = Image.open(save_image_path)
+    new_hash = hashlib.md5(image_hash.tobytes()).hexdigest()
+
+    return new_hash
 
 
 def create_thumbnail(instance, image_path):
@@ -119,27 +123,28 @@ def create_thumbnails(sender, instance, created, **kwargs):
     image_path = get_absolute_image_url(instance.image)
     im = Image.open(image_path)
     new_hash = hashlib.md5(im.tobytes()).hexdigest()
-    if new_hash != instance.hash or kwargs[created]:
+    if new_hash != instance.hash:
         post_save.disconnect(create_thumbnails, sender=sender)
         post_save.disconnect(sort_articles, sender=sender)
         create_thumbnail(instance, image_path)
         thumbnail_path = instance.image.url.split('/media/')[1].split('.')[0]
         thumbnail_path = "{0}_thumbnail.jpg".format(thumbnail_path)
-        resize_image(image_path)
+        new_hashser = resize_image(image_path)
         image_path = instance.image.url.split('/media/')[1].split('.')[0]
         image_path = "{0}_main.jpg".format(image_path)
-        instance.hash = new_hash
+        instance.hash = new_hashser
         instance.thumbnail = thumbnail_path
         instance.image = image_path
         instance.save()
         post_save.connect(create_thumbnails, sender=sender)
         post_save.connect(sort_articles, sender=sender)
+    else:
+        pass
 
 
 def sort_articles(sender, instance, created, **kwargs):
     post_save.disconnect(sort_articles, sender=sender)
     post_save.disconnect(create_thumbnails, sender=sender)
-
     articles = Article.objects.order_by('-creation_date')
     page = 1
     length = list(articles)
