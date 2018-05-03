@@ -71,11 +71,25 @@ export function fetchNextArticles(page) {
             })
     }
 }
+
+//////ЗАПРОС НА СПИСОК ВСЕХ  СТРАНИЦЕ ПО URL //////
+export function fetchNextAllArticles(page) {
+    return dispatch => {
+        return fetch(`${SERVER_URL}/api/v1/article/all/?pages=${page}`)
+            .then(checkHttpStatus)
+            .then(parseJSON)
+            .then((response) => {
+                dispatch(loadMorePosts(response))
+            })
+    }
+}
+
+
 ////// ЗАПРОС НА СПИСОК ВСЕХ СТАТЕЙ //////
 export function fetchAllArticles() {
     return dispatch => {
         dispatch(requestPosts())
-        return fetch(`${SERVER_URL}/api/v1/article/all/`)
+        return fetch(`${SERVER_URL}/api/v1/article/all/?pages=1`)
             .then(checkHttpStatus)
             .then(parseJSON)
             .then((response) => {

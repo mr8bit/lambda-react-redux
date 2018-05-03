@@ -49,6 +49,12 @@ class AllArticleViewSet(viewsets.ModelViewSet):
     lookup_field = 'id'
 
     def get_queryset(self):
+        tags = self.request.query_params.get('tags', None)
+        if tags:
+            return self.queryset.filter(tags__name__in=[tags]).order_by('line_num')
+        pages = self.request.query_params.get('pages', None)
+        if pages:
+            return self.queryset.filter(page=pages).order_by('line_num', 'order_in_line')
         return self.queryset.all()
 
     def get_object(self):

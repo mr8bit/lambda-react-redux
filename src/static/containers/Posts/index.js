@@ -11,11 +11,14 @@ class PostsView extends React.Component {
     static propTypes = {
         actionsPosts: PropTypes.shape({
             fetchAllArticles: PropTypes.func.isRequired,
-            fetchNextArticles: PropTypes.func.isRequired,
+            fetchNextAllArticles: PropTypes.func.isRequired,
         }).isRequired,
 
     };
-  static defaultProps = {
+    state = {
+        page: 2
+    }
+    static defaultProps = {
         results: [],
         count: 0,
         next: '',
@@ -29,10 +32,8 @@ class PostsView extends React.Component {
     }
 
     getOtherArticle() {
-        if (this.props.posts.postsList.next) {
-            var data = this.props.actionsPosts.fetchNextArticles(this.props.posts.postsList.next);
-            console.log(data)
-        }
+        var data = this.props.actionsPosts.fetchNextAllArticles(this.state.page);
+        this.setState({page: this.state.page + 1});
     }
 
 

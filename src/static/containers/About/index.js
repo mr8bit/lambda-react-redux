@@ -10,6 +10,8 @@ import BigHeadTitle from '../../components/Head/BigHeadTitle'
 import about_bg from "./about_bg.png";
 import HeadOnHead from '../../components/Head/HeadOnHead'
 import ListTeam from '../../components/Team/ListTeam'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
+
 class AboutView extends React.Component {
 
     static propTypes = {
@@ -26,27 +28,43 @@ class AboutView extends React.Component {
     render() {
         const HeadOnTitle = "Лучшие нашей <span style='font-weight:bold;'>Команды</span>"
         return (
-            <div >
-                <BigHeadTitle title={"О нас"} image={about_bg}/>
-                <div className="panel panel--big panel--small">
-                    <div className="panel__10 panel__about">
-                        <div className="panel__text">
-                            Lambda – это самое молодёжное сообщество программистов, организованное студентами
-                            Московского Авиационного Института.
-                            Мы предлагаем обучение современным IT технологиям в формате изучения через практику, а также
-                            предоставляем площадку для выступления с докладами более опытных студентов и экспертов из
-                            крупных IT компаний. Кроме этого, наши команды участвуют в хакатонах, конкурсах и
-                            научно-технических выставках.
-                            Дружественный и сплоченный коллектив не даст заскучать во время сессии и не оставит без
-                            помощи в трудной ситуации.
-                            Ещё нагрузим ценным навыком работать в команде, даже сопротивляющихся.
-                            Lambda – именно тот элемент института, который подготовит к самостоятельной работе.
+            <div>
+                <ReactCSSTransitionGroup transitionName="animation"
+                                         transitionAppear={true}
+                                         transitionAppearTimeout={400}
+                                         component="div"
+                                         transitionEnterTimeout={1000}
+                                         transitionLeaveTimeout={1000}>
+                    <div className="animation">
+                        <BigHeadTitle title={"О нас"} image={about_bg}/>
+                        <div className="panel panel--big panel--small">
+                            <div className="panel__10 panel__about">
+                                <div className="panel__text">
+                                    Lambda – это самое молодёжное сообщество программистов, организованное
+                                    студентами
+                                    Московского Авиационного Института.
+                                    Мы предлагаем обучение современным IT технологиям в формате изучения через
+                                    практику, а
+                                    также
+                                    предоставляем площадку для выступления с докладами более опытных студентов и
+                                    экспертов
+                                    из
+                                    крупных IT компаний. Кроме этого, наши команды участвуют в хакатонах, конкурсах
+                                    и
+                                    научно-технических выставках.
+                                    Дружественный и сплоченный коллектив не даст заскучать во время сессии и не
+                                    оставит без
+                                    помощи в трудной ситуации.
+                                    Ещё нагрузим ценным навыком работать в команде, даже сопротивляющихся.
+                                    Lambda – именно тот элемент института, который подготовит к самостоятельной
+                                    работе.
+                                </div>
+                            </div>
                         </div>
+                        <HeadOnHead title={HeadOnTitle} back_title={"Наша команда"}/>
+                        <ListTeam list={this.props.team.results}/>
                     </div>
-                </div>
-                <HeadOnHead title={HeadOnTitle} back_title={"Наша команда"}/>
-                <ListTeam list={this.props.team.results} />
-
+                </ReactCSSTransitionGroup>
 
 
             </div>
